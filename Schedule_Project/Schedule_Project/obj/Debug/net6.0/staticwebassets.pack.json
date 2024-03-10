@@ -1,10 +1,6 @@
 {
   "Files": [
     {
-      "Id": "D:\\SUBJECT-AND-STUDY\\CODE\\semester-7-fu\\PRN221\\Project\\project_prn221\\Schedule_Project\\Schedule_Project\\obj\\Debug\\net6.0\\scopedcss\\projectbundle\\Schedule_Project.bundle.scp.css",
-      "PackagePath": "staticwebassets\\Schedule_Project.bundle.scp.css"
-    },
-    {
       "Id": "D:\\SUBJECT-AND-STUDY\\CODE\\semester-7-fu\\PRN221\\Project\\project_prn221\\Schedule_Project\\Schedule_Project\\wwwroot\\css\\site.css",
       "PackagePath": "staticwebassets\\css\\site.css"
     },
@@ -243,6 +239,22 @@
     {
       "Id": "D:\\SUBJECT-AND-STUDY\\CODE\\semester-7-fu\\PRN221\\Project\\project_prn221\\Schedule_Project\\Schedule_Project\\wwwroot\\lib\\jquery\\dist\\jquery.min.map",
       "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.min.map"
+    },
+    {
+      "Id": "D:\\SUBJECT-AND-STUDY\\CODE\\semester-7-fu\\PRN221\\Project\\project_prn221\\Schedule_Project\\Schedule_Project\\wwwroot\\uploads\\421179698_709858741328122_5925624411515794621_n.jpg",
+      "PackagePath": "staticwebassets\\uploads\\421179698_709858741328122_5925624411515794621_n.jpg"
+    },
+    {
+      "Id": "D:\\SUBJECT-AND-STUDY\\CODE\\semester-7-fu\\PRN221\\Project\\project_prn221\\Schedule_Project\\Schedule_Project\\wwwroot\\uploads\\fasdf.png",
+      "PackagePath": "staticwebassets\\uploads\\fasdf.png"
+    },
+    {
+      "Id": "D:\\SUBJECT-AND-STUDY\\CODE\\semester-7-fu\\PRN221\\Project\\project_prn221\\Schedule_Project\\Schedule_Project\\wwwroot\\uploads\\haha.json",
+      "PackagePath": "staticwebassets\\uploads\\haha.json"
+    },
+    {
+      "Id": "D:\\SUBJECT-AND-STUDY\\CODE\\semester-7-fu\\PRN221\\Project\\project_prn221\\Schedule_Project\\Schedule_Project\\wwwroot\\uploads\\shadow_girl_by_sieere_d9bw8sy-fullview-removebg-preview.png",
+      "PackagePath": "staticwebassets\\uploads\\shadow_girl_by_sieere_d9bw8sy-fullview-removebg-preview.png"
     },
     {
       "Id": "obj\\Debug\\net6.0\\staticwebassets\\msbuild.Schedule_Project.Microsoft.AspNetCore.StaticWebAssets.props",

@@ -2,6 +2,20 @@
   "version": 3,
   "targets": {
     "net6.0": {
+      "FileSignatures/4.4.1": {
+        "type": "package",
+        "dependencies": {
+          "OpenMcdf": "2.2.1.9",
+          "System.Reflection.TypeExtensions": "4.3.0",
+          "System.Runtime": "4.3.0"
+        },
+        "compile": {
+          "lib/netstandard2.0/FileSignatures.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/FileSignatures.dll": {}
+        }
+      },
       "Humanizer/2.14.1": {
         "type": "package",
         "dependencies": {
@@ -2099,6 +2113,19 @@
           "lib/netstandard2.0/NuGet.Versioning.dll": {}
         }
       },
+      "OpenMcdf/2.2.1.9": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.0/OpenMcdf.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.0/OpenMcdf.dll": {
+            "related": ".xml"
+          }
+        }
+      },
       "runtime.debian.8-x64.runtime.native.System.Security.Cryptography.OpenSsl/4.3.0": {
         "type": "package",
         "runtimeTargets": {
@@ -3196,7 +3223,7 @@
           "System.Runtime": "4.3.0"
         },
         "compile": {
-          "ref/netstandard1.5/_._": {
+          "ref/netstandard1.5/System.Reflection.TypeExtensions.dll": {
             "related": ".xml"
           }
         },
@@ -3931,6 +3958,20 @@
     }
   },
   "libraries": {
+    "FileSignatures/4.4.1": {
+      "sha512": "vhJMpLzZeGQaxSuv53jo5kDzYBFC6opgP54sBRvf17gh8COpGwzW2pRxd1MrI1RqlClH3VhtlyJs0QyYU9gd/w==",
+      "type": "package",
+      "path": "filesignatures/4.4.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "filesignatures.4.4.1.nupkg.sha512",
+        "filesignatures.nuspec",
+        "lib/net452/FileSignatures.dll",
+        "lib/net461/FileSignatures.dll",
+        "lib/netstandard2.0/FileSignatures.dll"
+      ]
+    },
     "Humanizer/2.14.1": {
       "sha512": "/FUTD3cEceAAmJSCPN9+J+VhGwmL/C12jvwlyM1DFXShEMsBzvLzLqSrJ2rb+k/W2znKw7JyflZgZpyE+tI7lA==",
       "type": "package",
@@ -6915,6 +6956,21 @@
         "lib/netstandard2.0/NuGet.Versioning.dll",
         "nuget.versioning.6.6.1.nupkg.sha512",
         "nuget.versioning.nuspec"
+      ]
+    },
+    "OpenMcdf/2.2.1.9": {
+      "sha512": "4UU23MN32j7b5CqbdKmMm9xss8k2MlUxGwm25Z72EHva+2rCKsCf+/MGRmw+2p5XPYutSrtuVHWpXLRBgBzFRg==",
+      "type": "package",
+      "path": "openmcdf/2.2.1.9",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/net40/OpenMcdf.dll",
+        "lib/net40/OpenMcdf.xml",
+        "lib/netstandard2.0/OpenMcdf.dll",
+        "lib/netstandard2.0/OpenMcdf.xml",
+        "openmcdf.2.2.1.9.nupkg.sha512",
+        "openmcdf.nuspec"
       ]
     },
     "runtime.debian.8-x64.runtime.native.System.Security.Cryptography.OpenSsl/4.3.0": {
@@ -11049,6 +11105,7 @@
   },
   "projectFileDependencyGroups": {
     "net6.0": [
+      "FileSignatures >= 4.4.1",
       "Microsoft.EntityFrameworkCore.Design >= 6.0.27",
       "Microsoft.EntityFrameworkCore.SqlServer >= 6.0.27",
       "Microsoft.EntityFrameworkCore.Sqlite >= 6.0.27",
@@ -11097,6 +11154,10 @@
       "net6.0": {
         "targetAlias": "net6.0",
         "dependencies": {
+          "FileSignatures": {
+            "target": "Package",
+            "version": "[4.4.1, )"
+          },
           "Microsoft.EntityFrameworkCore.Design": {
             "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
             "suppressParent": "All",

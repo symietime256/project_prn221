@@ -22,6 +22,10 @@ build_property._RazorSourceGeneratorDebug =
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRXJyb3IuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[D:/SUBJECT-AND-STUDY/CODE/semester-7-fu/PRN221/Project/project_prn221/Schedule_Project/Schedule_Project/Pages/Imports/ScheduleInformation.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSW1wb3J0c1xTY2hlZHVsZUluZm9ybWF0aW9uLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/SUBJECT-AND-STUDY/CODE/semester-7-fu/PRN221/Project/project_prn221/Schedule_Project/Schedule_Project/Pages/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
@@ -30,28 +34,24 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUHJpdmFjeS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/SUBJECT-AND-STUDY/CODE/semester-7-fu/PRN221/Project/project_prn221/Schedule_Project/Schedule_Project/Pages/Shared/_ValidationScriptsPartial.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+[D:/SUBJECT-AND-STUDY/CODE/semester-7-fu/PRN221/Project/project_prn221/Schedule_Project/Schedule_Project/Pages/Subjects/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU3ViamVjdHNcQ3JlYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/SUBJECT-AND-STUDY/CODE/semester-7-fu/PRN221/Project/project_prn221/Schedule_Project/Schedule_Project/Pages/UniversityClasses/Create.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVW5pdmVyc2l0eUNsYXNzZXNcQ3JlYXRlLmNzaHRtbA==
+[D:/SUBJECT-AND-STUDY/CODE/semester-7-fu/PRN221/Project/project_prn221/Schedule_Project/Schedule_Project/Pages/Subjects/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU3ViamVjdHNcRGVsZXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/SUBJECT-AND-STUDY/CODE/semester-7-fu/PRN221/Project/project_prn221/Schedule_Project/Schedule_Project/Pages/UniversityClasses/Delete.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVW5pdmVyc2l0eUNsYXNzZXNcRGVsZXRlLmNzaHRtbA==
+[D:/SUBJECT-AND-STUDY/CODE/semester-7-fu/PRN221/Project/project_prn221/Schedule_Project/Schedule_Project/Pages/Subjects/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU3ViamVjdHNcRGV0YWlscy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/SUBJECT-AND-STUDY/CODE/semester-7-fu/PRN221/Project/project_prn221/Schedule_Project/Schedule_Project/Pages/UniversityClasses/Details.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVW5pdmVyc2l0eUNsYXNzZXNcRGV0YWlscy5jc2h0bWw=
+[D:/SUBJECT-AND-STUDY/CODE/semester-7-fu/PRN221/Project/project_prn221/Schedule_Project/Schedule_Project/Pages/Subjects/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU3ViamVjdHNcRWRpdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/SUBJECT-AND-STUDY/CODE/semester-7-fu/PRN221/Project/project_prn221/Schedule_Project/Schedule_Project/Pages/UniversityClasses/Edit.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVW5pdmVyc2l0eUNsYXNzZXNcRWRpdC5jc2h0bWw=
-build_metadata.AdditionalFiles.CssScope = 
-
-[D:/SUBJECT-AND-STUDY/CODE/semester-7-fu/PRN221/Project/project_prn221/Schedule_Project/Schedule_Project/Pages/UniversityClasses/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVW5pdmVyc2l0eUNsYXNzZXNcSW5kZXguY3NodG1s
+[D:/SUBJECT-AND-STUDY/CODE/semester-7-fu/PRN221/Project/project_prn221/Schedule_Project/Schedule_Project/Pages/Subjects/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU3ViamVjdHNcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/SUBJECT-AND-STUDY/CODE/semester-7-fu/PRN221/Project/project_prn221/Schedule_Project/Schedule_Project/Pages/_ViewImports.cshtml]
@@ -61,7 +61,3 @@ build_metadata.AdditionalFiles.CssScope =
 [D:/SUBJECT-AND-STUDY/CODE/semester-7-fu/PRN221/Project/project_prn221/Schedule_Project/Schedule_Project/Pages/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
-
-[D:/SUBJECT-AND-STUDY/CODE/semester-7-fu/PRN221/Project/project_prn221/Schedule_Project/Schedule_Project/Pages/Shared/_Layout.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXF9MYXlvdXQuY3NodG1s
-build_metadata.AdditionalFiles.CssScope = b-hm2mtpbmcb

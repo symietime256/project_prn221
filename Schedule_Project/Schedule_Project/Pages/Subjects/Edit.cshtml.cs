@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Schedule_Project.Models;
 
-namespace Schedule_Project.Pages.UniversityClasses
+namespace Schedule_Project.Pages.Subjects
 {
     public class EditModel : PageModel
     {
@@ -20,21 +20,21 @@ namespace Schedule_Project.Pages.UniversityClasses
         }
 
         [BindProperty]
-        public UniversityClass UniversityClass { get; set; } = default!;
+        public Subject Subject { get; set; } = default!;
 
         public async Task<IActionResult> OnGetAsync(string id)
         {
-            if (id == null || _context.UniversityClasses == null)
+            if (id == null || _context.Subjects == null)
             {
                 return NotFound();
             }
 
-            var universityclass =  await _context.UniversityClasses.FirstOrDefaultAsync(m => m.ClassId == id);
-            if (universityclass == null)
+            var subject =  await _context.Subjects.FirstOrDefaultAsync(m => m.SubjectId == id);
+            if (subject == null)
             {
                 return NotFound();
             }
-            UniversityClass = universityclass;
+            Subject = subject;
             return Page();
         }
 
@@ -47,7 +47,7 @@ namespace Schedule_Project.Pages.UniversityClasses
                 return Page();
             }
 
-            _context.Attach(UniversityClass).State = EntityState.Modified;
+            _context.Attach(Subject).State = EntityState.Modified;
 
             try
             {
@@ -55,7 +55,7 @@ namespace Schedule_Project.Pages.UniversityClasses
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!UniversityClassExists(UniversityClass.ClassId))
+                if (!SubjectExists(Subject.SubjectId))
                 {
                     return NotFound();
                 }
@@ -68,9 +68,9 @@ namespace Schedule_Project.Pages.UniversityClasses
             return RedirectToPage("./Index");
         }
 
-        private bool UniversityClassExists(string id)
+        private bool SubjectExists(string id)
         {
-          return (_context.UniversityClasses?.Any(e => e.ClassId == id)).GetValueOrDefault();
+          return (_context.Subjects?.Any(e => e.SubjectId == id)).GetValueOrDefault();
         }
     }
 }

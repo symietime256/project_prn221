@@ -1,0 +1,23 @@
+﻿@page
+@model ScheduleInformationModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    ViewData["Title"] = "Upload File";
+}
+
+<h1>Upload File</h1>
+
+<form method="post" enctype="multipart/form-data">
+    <div class="form-group">
+
+        <label asp-for="FileUpload">Choose file</label>
+        <input asp-for="FileUpload" type="file" class="form-control-file" id="fileInput" name="FileUpload" accept=".json, .xml, .csv">
+    </div>
+    <button type="submit" class="btn btn-primary">Upload</button>
+</form>
+
+@if (Model.Message != null)
+{
+    <p>@Model.Message</p>
+}
+

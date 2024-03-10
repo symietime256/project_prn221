@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using Schedule_Project.Models;
 
-namespace Schedule_Project.Pages.UniversityClasses
+namespace Schedule_Project.Pages.Subjects
 {
     public class DetailsModel : PageModel
     {
@@ -18,23 +18,23 @@ namespace Schedule_Project.Pages.UniversityClasses
             _context = context;
         }
 
-      public UniversityClass UniversityClass { get; set; } = default!; 
+      public Subject Subject { get; set; } = default!; 
 
         public async Task<IActionResult> OnGetAsync(string id)
         {
-            if (id == null || _context.UniversityClasses == null)
+            if (id == null || _context.Subjects == null)
             {
                 return NotFound();
             }
 
-            var universityclass = await _context.UniversityClasses.FirstOrDefaultAsync(m => m.ClassId == id);
-            if (universityclass == null)
+            var subject = await _context.Subjects.FirstOrDefaultAsync(m => m.SubjectId == id);
+            if (subject == null)
             {
                 return NotFound();
             }
             else 
             {
-                UniversityClass = universityclass;
+                Subject = subject;
             }
             return Page();
         }

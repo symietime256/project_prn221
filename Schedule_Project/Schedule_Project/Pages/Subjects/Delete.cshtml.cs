@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using Schedule_Project.Models;
 
-namespace Schedule_Project.Pages.UniversityClasses
+namespace Schedule_Project.Pages.Subjects
 {
     public class DeleteModel : PageModel
     {
@@ -19,40 +19,40 @@ namespace Schedule_Project.Pages.UniversityClasses
         }
 
         [BindProperty]
-      public UniversityClass UniversityClass { get; set; } = default!;
+      public Subject Subject { get; set; } = default!;
 
         public async Task<IActionResult> OnGetAsync(string id)
         {
-            if (id == null || _context.UniversityClasses == null)
+            if (id == null || _context.Subjects == null)
             {
                 return NotFound();
             }
 
-            var universityclass = await _context.UniversityClasses.FirstOrDefaultAsync(m => m.ClassId == id);
+            var subject = await _context.Subjects.FirstOrDefaultAsync(m => m.SubjectId == id);
 
-            if (universityclass == null)
+            if (subject == null)
             {
                 return NotFound();
             }
             else 
             {
-                UniversityClass = universityclass;
+                Subject = subject;
             }
             return Page();
         }
 
         public async Task<IActionResult> OnPostAsync(string id)
         {
-            if (id == null || _context.UniversityClasses == null)
+            if (id == null || _context.Subjects == null)
             {
                 return NotFound();
             }
-            var universityclass = await _context.UniversityClasses.FindAsync(id);
+            var subject = await _context.Subjects.FindAsync(id);
 
-            if (universityclass != null)
+            if (subject != null)
             {
-                UniversityClass = universityclass;
-                _context.UniversityClasses.Remove(UniversityClass);
+                Subject = subject;
+                _context.Subjects.Remove(Subject);
                 await _context.SaveChangesAsync();
             }
 

@@ -1,3 +1,5 @@
+using FileSignatures;
+
 namespace Schedule_Project
 {
     public class Program
@@ -9,6 +11,8 @@ namespace Schedule_Project
             // Add services to the container.
             builder.Services.AddRazorPages();
             builder.Services.AddDbContext<Models.PRN221ProjectContext>();
+            builder.Services.AddSingleton<IFileFormatInspector>(new FileFormatInspector());
+            builder.Services.AddSingleton(new SharingContent.HandleFileUpload());
 
             var app = builder.Build();
 

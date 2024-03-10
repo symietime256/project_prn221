@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Schedule_Project.Models;
 
-namespace Schedule_Project.Pages.UniversityClasses
+namespace Schedule_Project.Pages.Subjects
 {
     public class CreateModel : PageModel
     {
@@ -24,18 +24,18 @@ namespace Schedule_Project.Pages.UniversityClasses
         }
 
         [BindProperty]
-        public UniversityClass UniversityClass { get; set; } = default!;
+        public Subject Subject { get; set; } = default!;
         
 
         // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
         public async Task<IActionResult> OnPostAsync()
         {
-          if (!ModelState.IsValid || _context.UniversityClasses == null || UniversityClass == null)
+          if (!ModelState.IsValid || _context.Subjects == null || Subject == null)
             {
                 return Page();
             }
 
-            _context.UniversityClasses.Add(UniversityClass);
+            _context.Subjects.Add(Subject);
             await _context.SaveChangesAsync();
 
             return RedirectToPage("./Index");

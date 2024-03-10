@@ -7,6 +7,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Pages\Shared\**" />
+    <Content Remove="Pages\Shared\**" />
+    <EmbeddedResource Remove="Pages\Shared\**" />
+    <None Remove="Pages\Shared\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="FileSignatures" Version="4.4.1" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.27">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
