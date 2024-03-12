@@ -1,0 +1,104 @@
+﻿@page
+@model Schedule_Project.Pages.ShowSchedule.DisplayScheduleByDaysModel
+@using DTOs
+@{
+}
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Schedules</h1>
+<style>
+
+    .table td {
+        border: white solid 2px;
+    }
+
+    .table td {
+        text-align: center;
+        vertical-align: middle;
+    }
+
+    .table tr:nth-child(2n) {
+        background-color: aliceblue;
+    }
+
+    .table .header {
+        background-color: cornflowerblue;
+    }
+
+    #header {
+        background-color: cornflowerblue;
+        font-weight: bold;
+    }
+
+    #dateth{
+        text-align: center;
+    }
+    #createBut{
+        border: black solid 2px;
+        background-color: blue;
+        border-radius: 10px;
+        margin: 10px;
+        
+    }
+    #createBut a{
+        color: white;
+        font-size: 20px;
+        text-decoration: none;
+    }
+    #createBut:hover{
+        background-color: dodgerblue;
+    }
+</style>
+<button id="createBut">
+    <a asp-page="Create">Add Schedule</a>
+</button>
+
+<table class="table">
+    <tr id="header">
+        <form method="get" asp-page-handler="date">
+            <th colspan="7" id="dateth">
+            DATE: <input type="date" name="SelectedDate" value="@Model.SelectedDate.ToString("yyyy-MM-dd")" />
+                <input type="submit" value="View" style="padding-left: 10px; border-radius: 5px;" />
+            </th>
+        </form>
+    </tr>
+    <tr class="header" id="header">
+        <td>Room</td>
+        <td>Slot 1 <br /> (7:30 - 9:50)</td>
+        <td>Slot 2 <br /> (10:00 - 12:20)</td>
+        <td>Slot 3<br /> (12:50 - 15:10)</td>
+        <td>Slot 4<br /> (15:20 - 17:40)</td>
+        <td>Slot 5<br /> (18:00 - 20:20)</td>
+        <td>Slot 6<br /> (20:20 - 22:40)</td>
+    </tr>
+    @{
+        var dictionary = Model.ScheduleCells.scheduleCells;
+    }
+    @foreach (var room in Model.RoomLists)
+    {
+        <tr>
+            <td>@room</td>
+            @for (int i = 1; i <= 6; i++)
+            {
+
+                var key = Tuple.Create(room, i);
+                RoomSlotInformationDTO value = new RoomSlotInformationDTO();
+                if (dictionary.TryGetValue(key, out value))
+                {
+                    <td>
+                        @value.ClassID<br />
+                        @value.SubjectId<br />
+                        @value.Teacher
+                    </td>
+                }
+                else
+                {
+                    <td></td>
+                }
+            }
+        </tr>
+    }
+</table>

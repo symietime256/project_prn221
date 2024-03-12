@@ -1,5 +1,8 @@
-﻿using Newtonsoft.Json;
+﻿using Microsoft.CodeAnalysis.CSharp.Syntax;
+using Microsoft.EntityFrameworkCore.Storage.ValueConversion.Internal;
+using Newtonsoft.Json;
 using Schedule_Project.DTOs;
+using static Schedule_Project.SharingContent.EnumSource;
 
 namespace Schedule_Project.SharingContent
 {
@@ -17,12 +20,31 @@ namespace Schedule_Project.SharingContent
         //        Console.WriteLine(item.ToString());
         //    }
         //}
-        public List<ScheduleDTO> ListOfScheduleInformation(string filePath)
+        public List<ScheduleDTO> DeserializeListOfScheduleInformation(string filePath, FileType fileType)
+        {
+            List<ScheduleDTO> scheduleDTOs;
+            switch (fileType) {
+                case FileType.JSON:
+                    scheduleDTOs = DeserializeToJSON(filePath);
+                    break;
+                case FileType.XML:
+                    scheduleDTOs = new List<ScheduleDTO>();
+                    break;
+                default:
+                    scheduleDTOs = new List<ScheduleDTO>(); 
+                    break;
+            }
+          
+            return scheduleDTOs;
+        }
+
+        private List<ScheduleDTO> DeserializeToJSON(string filePath)
         {
             string json = System.IO.File.ReadAllText(filePath);
-
-            List<ScheduleDTO> scheduleDTOs = JsonConvert.DeserializeObject<List<ScheduleDTO>>(json);
+            ScheduleListDTO listScheduleDTOs = JsonConvert.DeserializeObject<ScheduleListDTO>(json);
+            List<ScheduleDTO> scheduleDTOs = listScheduleDTOs.ListOfScheduleInformation;
             return scheduleDTOs;
+        
         }
     }
 }

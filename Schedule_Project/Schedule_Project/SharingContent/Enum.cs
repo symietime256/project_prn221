@@ -9,5 +9,13 @@
             CSV,
             Unknown
         }
+        public enum SlotTime
+        {
+            Morning,
+            Afternoon,
+            Evening
+        }
+
+        
     }
 }

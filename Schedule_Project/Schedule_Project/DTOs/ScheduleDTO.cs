@@ -12,4 +12,11 @@
 
         public string SlotId { get; set; }
     }
+
+    public class ScheduleListDTO
+    {
+        public ScheduleListDTO() { }
+
+        public List<ScheduleDTO> ListOfScheduleInformation { get; set; }
+    }
 }

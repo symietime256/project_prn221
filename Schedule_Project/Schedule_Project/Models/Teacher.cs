@@ -8,7 +8,6 @@ namespace Schedule_Project.Models
         public Teacher()
         {
             Schedules = new HashSet<Schedule>();
-            SessionLists = new HashSet<SessionList>();
         }
 
         public string TeacherId { get; set; } = null!;
@@ -16,6 +15,5 @@ namespace Schedule_Project.Models
         public double Rating { get; set; }
 
         public virtual ICollection<Schedule> Schedules { get; set; }
-        public virtual ICollection<SessionList> SessionLists { get; set; }
     }
 }

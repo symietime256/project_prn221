@@ -38,8 +38,24 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/SUBJECT-AND-STUDY/CODE/semester-7-fu/PRN221/Project/project_prn221/Schedule_Project/Schedule_Project/Pages/ShowSchedule/DisplayScheduleByDays.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hvd1NjaGVkdWxlXERpc3BsYXlTY2hlZHVsZUJ5RGF5cy5jc2h0bWw=
+[D:/SUBJECT-AND-STUDY/CODE/semester-7-fu/PRN221/Project/project_prn221/Schedule_Project/Schedule_Project/Pages/Subjects/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU3ViamVjdHNcQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/SUBJECT-AND-STUDY/CODE/semester-7-fu/PRN221/Project/project_prn221/Schedule_Project/Schedule_Project/Pages/Subjects/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU3ViamVjdHNcRGVsZXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/SUBJECT-AND-STUDY/CODE/semester-7-fu/PRN221/Project/project_prn221/Schedule_Project/Schedule_Project/Pages/Subjects/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU3ViamVjdHNcRGV0YWlscy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/SUBJECT-AND-STUDY/CODE/semester-7-fu/PRN221/Project/project_prn221/Schedule_Project/Schedule_Project/Pages/Subjects/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU3ViamVjdHNcRWRpdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/SUBJECT-AND-STUDY/CODE/semester-7-fu/PRN221/Project/project_prn221/Schedule_Project/Schedule_Project/Pages/Subjects/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU3ViamVjdHNcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/SUBJECT-AND-STUDY/CODE/semester-7-fu/PRN221/Project/project_prn221/Schedule_Project/Schedule_Project/Pages/_ViewImports.cshtml]

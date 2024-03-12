@@ -1,6 +1,10 @@
 {
   "Files": [
     {
+      "Id": "D:\\SUBJECT-AND-STUDY\\CODE\\semester-7-fu\\PRN221\\Project\\project_prn221\\Schedule_Project\\Schedule_Project\\obj\\Debug\\net6.0\\scopedcss\\projectbundle\\Schedule_Project.bundle.scp.css",
+      "PackagePath": "staticwebassets\\Schedule_Project.bundle.scp.css"
+    },
+    {
       "Id": "D:\\SUBJECT-AND-STUDY\\CODE\\semester-7-fu\\PRN221\\Project\\project_prn221\\Schedule_Project\\Schedule_Project\\wwwroot\\css\\site.css",
       "PackagePath": "staticwebassets\\css\\site.css"
     },

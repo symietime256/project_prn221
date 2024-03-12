@@ -16,9 +16,8 @@ namespace Schedule_Project.Models
         {
         }
 
-        public virtual DbSet<RoomBuilding> RoomBuildings { get; set; } = null!;
+        public virtual DbSet<CourseSession> CourseSessions { get; set; } = null!;
         public virtual DbSet<Schedule> Schedules { get; set; } = null!;
-        public virtual DbSet<SessionList> SessionLists { get; set; } = null!;
         public virtual DbSet<Subject> Subjects { get; set; } = null!;
         public virtual DbSet<Teacher> Teachers { get; set; } = null!;
         public virtual DbSet<TimeSlot> TimeSlots { get; set; } = null!;
@@ -33,42 +32,43 @@ namespace Schedule_Project.Models
             }
         }
 
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<RoomBuilding>(entity =>
+            modelBuilder.Entity<CourseSession>(entity =>
             {
-                entity.HasKey(e => e.BuildingType);
+                entity.ToTable("CourseSession");
 
-                entity.ToTable("RoomBuilding");
+                entity.Property(e => e.Room).HasMaxLength(7);
 
-                entity.Property(e => e.BuildingType).HasMaxLength(10);
+                entity.Property(e => e.SessionDate).HasColumnType("date");
 
-                entity.Property(e => e.Description).HasMaxLength(50);
+                entity.Property(e => e.Teacher).HasMaxLength(10);
+
+                entity.HasOne(d => d.Course)
+                    .WithMany(p => p.CourseSessions)
+                    .HasForeignKey(d => d.CourseId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_CourseSession_Schedule");
             });
 
             modelBuilder.Entity<Schedule>(entity =>
             {
                 entity.ToTable("Schedule");
 
-                entity.Property(e => e.Id).HasMaxLength(10);
-
                 entity.Property(e => e.ClassId).HasMaxLength(7);
 
                 entity.Property(e => e.DateCreated).HasColumnType("datetime");
 
-                entity.Property(e => e.EndDate).HasColumnType("date");
+                entity.Property(e => e.EndDate).HasColumnType("datetime");
 
                 entity.Property(e => e.Room).HasMaxLength(7);
 
                 entity.Property(e => e.Season).HasMaxLength(10);
 
-                entity.Property(e => e.Slot1).HasMaxLength(20);
-
-                entity.Property(e => e.Slot2).HasMaxLength(20);
-
                 entity.Property(e => e.SlotId).HasMaxLength(3);
 
-                entity.Property(e => e.StartDate).HasColumnType("date");
+                entity.Property(e => e.StartDate).HasColumnType("datetime");
 
                 entity.Property(e => e.SubjectId).HasMaxLength(7);
 
@@ -93,25 +93,6 @@ namespace Schedule_Project.Models
                     .HasForeignKey(d => d.Teacher)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Schedule_Teacher");
-            });
-
-            modelBuilder.Entity<SessionList>(entity =>
-            {
-                entity.HasKey(e => e.ClassId);
-
-                entity.ToTable("SessionList");
-
-                entity.Property(e => e.ClassId).HasMaxLength(7);
-
-                entity.Property(e => e.TeacherId).HasMaxLength(10);
-
-                entity.Property(e => e.Time).HasColumnType("date");
-
-                entity.HasOne(d => d.Teacher)
-                    .WithMany(p => p.SessionLists)
-                    .HasForeignKey(d => d.TeacherId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_SessionList_Teacher");
             });
 
             modelBuilder.Entity<Subject>(entity =>
