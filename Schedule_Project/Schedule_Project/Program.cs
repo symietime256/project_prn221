@@ -1,4 +1,5 @@
 using FileSignatures;
+using Schedule_Project.Service;
 
 namespace Schedule_Project
 {
@@ -13,7 +14,11 @@ namespace Schedule_Project
             builder.Services.AddDbContext<Models.PRN221ProjectContext>();
             builder.Services.AddSingleton<IFileFormatInspector>(new FileFormatInspector());
             builder.Services.AddSingleton(new SharingContent.HandleFileUpload());
-
+            builder.Services.AddTransient<ScheduleServices>();
+            builder.Services.AddTransient<TeacherServices>();
+            builder.Services.AddTransient<SubjectServices>();
+            builder.Services.AddTransient<UniversityClassesServices>();
+            builder.Services.AddTransient<CourseSessionServices>();
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.

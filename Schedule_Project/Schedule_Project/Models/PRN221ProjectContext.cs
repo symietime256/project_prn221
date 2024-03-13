@@ -32,7 +32,6 @@ namespace Schedule_Project.Models
             }
         }
 
-
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<CourseSession>(entity =>
@@ -61,6 +60,8 @@ namespace Schedule_Project.Models
                 entity.Property(e => e.DateCreated).HasColumnType("datetime");
 
                 entity.Property(e => e.EndDate).HasColumnType("datetime");
+
+                entity.Property(e => e.HasSessionYet).HasColumnName("hasSessionYet");
 
                 entity.Property(e => e.Room).HasMaxLength(7);
 

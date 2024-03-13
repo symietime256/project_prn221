@@ -24,6 +24,7 @@ namespace Schedule_Project.Models
         public string TypeOfSlot { get; set; } = null!;
         public int Slot1 { get; set; }
         public int Slot2 { get; set; }
+        public bool HasSessionYet { get; set; }
 
         public virtual UniversityClass Class { get; set; } = null!;
         public virtual Subject Subject { get; set; } = null!;
