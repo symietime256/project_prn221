@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using Schedule_Project.Models;
 
-namespace Schedule_Project.Pages.ModelsGay
+namespace Schedule_Project.Pages.Courses
 {
     public class IndexModel : PageModel
     {
@@ -18,13 +18,16 @@ namespace Schedule_Project.Pages.ModelsGay
             _context = context;
         }
 
-        public IList<Subject> Subject { get;set; } = default!;
+        public IList<Schedule> Schedule { get;set; } = default!;
 
         public async Task OnGetAsync()
         {
-            if (_context.Subjects != null)
+            if (_context.Schedules != null)
             {
-                Subject = await _context.Subjects.ToListAsync();
+                Schedule = await _context.Schedules
+                .Include(s => s.Class)
+                .Include(s => s.Subject)
+                .Include(s => s.TeacherNavigation).ToListAsync();
             }
         }
     }

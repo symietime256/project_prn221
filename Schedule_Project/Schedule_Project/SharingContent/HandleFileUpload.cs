@@ -38,13 +38,15 @@ namespace Schedule_Project.SharingContent
             return scheduleDTOs;
         }
 
+        // StreamReader.ReadToEnd();
+
         private List<ScheduleDTO> DeserializeToJSON(string filePath)
         {
             string json = System.IO.File.ReadAllText(filePath);
             ScheduleListDTO listScheduleDTOs = JsonConvert.DeserializeObject<ScheduleListDTO>(json);
             List<ScheduleDTO> scheduleDTOs = listScheduleDTOs.ListOfScheduleInformation;
             return scheduleDTOs;
-        
+            
         }
     }
 }

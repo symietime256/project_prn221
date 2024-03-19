@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Schedule_Project.Models;
 
-namespace Schedule_Project.Pages.ModelsGay
+namespace Schedule_Project.Pages.Courses
 {
     public class EditModel : PageModel
     {
@@ -20,21 +20,24 @@ namespace Schedule_Project.Pages.ModelsGay
         }
 
         [BindProperty]
-        public Subject Subject { get; set; } = default!;
+        public Schedule Schedule { get; set; } = default!;
 
-        public async Task<IActionResult> OnGetAsync(string id)
+        public async Task<IActionResult> OnGetAsync(int? id)
         {
-            if (id == null || _context.Subjects == null)
+            if (id == null || _context.Schedules == null)
             {
                 return NotFound();
             }
 
-            var subject =  await _context.Subjects.FirstOrDefaultAsync(m => m.SubjectId == id);
-            if (subject == null)
+            var schedule =  await _context.Schedules.FirstOrDefaultAsync(m => m.Id == id);
+            if (schedule == null)
             {
                 return NotFound();
             }
-            Subject = subject;
+            Schedule = schedule;
+           ViewData["ClassId"] = new SelectList(_context.UniversityClasses, "ClassId", "ClassId");
+           ViewData["SubjectId"] = new SelectList(_context.Subjects, "SubjectId", "SubjectId");
+           ViewData["Teacher"] = new SelectList(_context.Teachers, "TeacherId", "TeacherId");
             return Page();
         }
 
@@ -47,7 +50,7 @@ namespace Schedule_Project.Pages.ModelsGay
                 return Page();
             }
 
-            _context.Attach(Subject).State = EntityState.Modified;
+            _context.Attach(Schedule).State = EntityState.Modified;
 
             try
             {
@@ -55,7 +58,7 @@ namespace Schedule_Project.Pages.ModelsGay
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!SubjectExists(Subject.SubjectId))
+                if (!ScheduleExists(Schedule.Id))
                 {
                     return NotFound();
                 }
@@ -68,9 +71,9 @@ namespace Schedule_Project.Pages.ModelsGay
             return RedirectToPage("./Index");
         }
 
-        private bool SubjectExists(string id)
+        private bool ScheduleExists(int id)
         {
-          return (_context.Subjects?.Any(e => e.SubjectId == id)).GetValueOrDefault();
+          return (_context.Schedules?.Any(e => e.Id == id)).GetValueOrDefault();
         }
     }
 }

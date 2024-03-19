@@ -19,6 +19,7 @@ namespace Schedule_Project
             builder.Services.AddTransient<SubjectServices>();
             builder.Services.AddTransient<UniversityClassesServices>();
             builder.Services.AddTransient<CourseSessionServices>();
+            builder.Services.AddTransient<CommonService>();
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.

@@ -1,0 +1,135 @@
+﻿@page
+@model Schedule_Project.Pages.Courses.CreateModel
+
+@{
+    string pageHandler;
+    ViewData["Title"] = "Create Schedule";
+    if (ViewBag.classexisted == "existed")
+    {
+        pageHandler = "CreateExisted";
+    } else
+    {   
+        pageHandler = "CreateNew";
+    }
+}
+
+<h1>Create</h1>
+
+<h4>Schedule</h4>
+<hr />
+<div class="row">
+    <div class="col-md-8">
+        <form method="post" asp-page-handler="@pageHandler">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            @if (ViewBag.classexisted == "existed")
+            {
+                <div class="form-group">
+                    <label asp-for="Schedule.ClassId" class="control-label"></label>
+                    <select asp-for="Schedule.ClassId" class="form-control" asp-items="ViewBag.ClassId"></select>
+                </div>
+            } else
+            {
+                <div class="form-group">
+                    <label asp-for="Schedule.ClassId" class="control-label"></label>
+                    <input asp-for="Schedule.ClassId" class="form-control">
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="@Model.DescriptionForClass" class="control-label"></label>
+                    <input asp-for="DescriptionForClass" class="form-control">
+                </div>
+            }
+            
+            <div class="form-group">
+                <label asp-for="Schedule.SubjectId" class="control-label"></label>
+                <select asp-for="Schedule.SubjectId" class ="form-control" asp-items="ViewBag.SubjectId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="Schedule.Room" class="control-label"></label>
+                <input asp-for="Schedule.Room" class="form-control" />
+                <span asp-validation-for="Schedule.Room" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Schedule.Teacher" class="control-label"></label>
+                <select asp-for="Schedule.Teacher" class ="form-control" asp-items="ViewBag.Teacher"></select>
+            </div>
+@*             <div class="form-group">
+                <label asp-for="Schedule.SlotId" class="control-label"></label>
+                <input asp-for="Schedule.SlotId" class="form-control" />
+                <span asp-validation-for="Schedule.SlotId" class="text-danger"></span>
+            </div> *@
+@*             <div class="form-group">
+                <label asp-for="Schedule.DateCreated" class="control-label"></label>
+                <input asp-for="Schedule.DateCreated" class="form-control" />
+                <span asp-validation-for="Schedule.DateCreated" class="text-danger"></span>
+            </div> *@
+@*             <div class="form-group">
+                <label asp-for="Schedule.Season" class="control-label"></label>
+                <input asp-for="Schedule.Season" class="form-control" />
+                <span asp-validation-for="Schedule.Season" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Schedule.Year" class="control-label"></label>
+                <input asp-for="Schedule.Year" class="form-control" />
+                <span asp-validation-for="Schedule.Year" class="text-danger"></span>
+            </div> *@
+@*             <div class="form-group">
+                <label asp-for="Schedule.EndDate" class="control-label"></label>
+                <input asp-for="Schedule.EndDate" class="form-control" />
+                <span asp-validation-for="Schedule.EndDate" class="text-danger"></span>
+            </div> *@
+            <div class="form-group">
+                <label asp-for="Schedule.TypeOfSlot" class="control-label"></label>
+                <select asp-for="Schedule.TypeOfSlot" class="form-control">
+                    <option value="Morning">
+                        Morning
+                    </option>
+                    <option value="Afternoon">
+                        Afternoon
+                    </option>
+                    <option value="Evening">
+                        Evening
+                    </option>
+                </select>
+                <span asp-validation-for="Schedule.TypeOfSlot" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Schedule.Slot1" class="control-label"></label>
+                <input asp-for="Schedule.Slot1" class="form-control" />
+                <span asp-validation-for="Schedule.Slot1" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Schedule.Slot2" class="control-label"></label>
+                <input asp-for="Schedule.Slot2" class="form-control" />
+                <span asp-validation-for="Schedule.Slot2" class="text-danger"></span>
+            </div>
+@*             <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="Schedule.HasSessionYet" /> @Html.DisplayNameFor(model => model.Schedule.HasSessionYet)
+                </label>
+            </div> *@
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+                @if (ViewBag.classexisted == "existed")
+                {
+                    <input type="hidden" name="classexisted" value="@ViewBag.classexisted" />
+                }
+            </div>
+        </form>
+    </div>
+</div>
+
+@if (Model.ErrorMessage != null && Model.ErrorMessage != "")
+{
+    <div>
+        <h3 style="color:red">@Model.ErrorMessage</h3>
+    </div>
+}
+
+<div>
+    <a asp-page="Index">Back to Course List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

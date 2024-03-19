@@ -14,7 +14,9 @@ namespace Schedule_Project.Service
 
         
         
-        public List<Schedule> SchedulesListInService;
+        public List<Schedule> SchedulesListInService { get; set; }
+
+        public Schedule ScheduleInCharge { get; set; }
 
         public SlotInformationDTO GetSlotInformation(ScheduleDTO scheduleDTO)
         {
@@ -46,6 +48,7 @@ namespace Schedule_Project.Service
             SchedulesListInService.Add(scheduleToSave);
             _context.Schedules.Add(scheduleToSave);
             _context.SaveChanges();
+            ScheduleInCharge = scheduleToSave;
         }
 
         private Schedule MapSchedule(ScheduleDTO scheduleDTO, SlotInformationDTO slotInfo)
@@ -59,7 +62,7 @@ namespace Schedule_Project.Service
             schedule1.Slot1 = slotInfo.Slot1;
             schedule1.Slot2 = slotInfo.Slot2;
             schedule1.TypeOfSlot = slotInfo.TypeOfSlot;
-            schedule1.StartDate = GetStartDate();
+            schedule1.StartDate = GetStartDate(slotInfo.Slot1, slotInfo.Slot2);
             schedule1.EndDate = endDate;
             schedule1.Season = semester;
             schedule1.Year = year;
@@ -67,8 +70,10 @@ namespace Schedule_Project.Service
             schedule1.HasSessionYet = false;
             return schedule1;
         }
-        public DateTime GetStartDate()
+        public DateTime GetStartDate(int slot1, int slot2)
         {
+            int firstDay;
+            firstDay = Math.Min(slot1, slot2);
             int year = DateTime.Now.Year;
             // Create a DateTime object for the first day of the year
             DateTime firstDayOfYear = new DateTime(year, 1, 1);
@@ -78,11 +83,14 @@ namespace Schedule_Project.Service
 
             // Add the calculated number of days to the first day of the year to get the first Monday
             DateTime firstMondayOfYear = firstDayOfYear.AddDays(daysToAdd);
-            return firstMondayOfYear;
+            DateTime firstDate = firstMondayOfYear.AddDays(firstDay - 2);
+            return firstDate;
         }
         public ScheduleServices(PRN221ProjectContext context)
         {
             _context = context;
+            SchedulesListInService = new List<Schedule>();
+            ScheduleInCharge = new Schedule();
         }
 
         public List<Schedule> GetSchedules()

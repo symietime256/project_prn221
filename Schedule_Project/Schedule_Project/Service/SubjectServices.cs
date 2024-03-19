@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Schedule_Project.Models;
+using System.Reflection.Metadata;
 
 namespace Schedule_Project.Service
 {
@@ -17,6 +18,19 @@ namespace Schedule_Project.Service
         {
             return _context.Subjects.ToList();
         }
+
+        public int GetSessionsBySubjectId(string id)
+        {
+            var subject = _context.Subjects.FirstOrDefault(x => x.SubjectId == id);
+            if (subject == null)
+            {
+                return -1;
+            }
+            return (int)subject.NumberOfSessions;
+        }
+
+        
+
 
         public List<string> GetSubjectIdList()
         {

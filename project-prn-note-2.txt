@@ -1,0 +1,14 @@
+Weekly timetable for each teacher
+
+- teacher search
+- (slot, days, teacher) // selectlist for teachers
+
+add class (check)
+
+
+subjectId, room, teacher, 
+
+slotid = typeofslot + slot 1 + slot 2
+datecreated = date.now;
+season = "Spring";
+year = 2024

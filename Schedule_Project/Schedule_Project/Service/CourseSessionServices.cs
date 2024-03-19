@@ -1,4 +1,6 @@
-﻿using Schedule_Project.Models;
+﻿using Schedule_Project.DTOs;
+using Schedule_Project.Models;
+using Schedule_Project.SharingContent;
 
 namespace Schedule_Project.Service
 {
@@ -22,5 +24,35 @@ namespace Schedule_Project.Service
         {
             _context.SaveChanges();
         }
+            public string GetTypeOfSlot(char slot)
+        {
+            switch (slot)
+            {
+                case 'A':
+                    return Constant.MORNING;
+                case 'B':
+                    return Constant.AFTERNOON;
+                case 'C':
+                    return Constant.EVENING;
+                default:
+                    return Constant.INVALID_TYPE_OF_SLOT;
+            }
+        }
+        private int GetSlots(int slot, string typeOfSlot)
+        {
+            int sessionSlot = slot;
+            if (typeOfSlot.Equals(Constant.AFTERNOON))
+            {
+                sessionSlot = slot + 2;
+            }
+            else if (typeOfSlot.Equals(Constant.EVENING))
+            {
+                sessionSlot = slot + 4;
+            }
+            return sessionSlot;
+        }
+
+
+
     }
 }

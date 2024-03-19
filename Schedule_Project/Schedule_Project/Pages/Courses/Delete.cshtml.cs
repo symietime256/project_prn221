@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using Schedule_Project.Models;
 
-namespace Schedule_Project.Pages.ModelsGay
+namespace Schedule_Project.Pages.Courses
 {
     public class DeleteModel : PageModel
     {
@@ -19,40 +19,40 @@ namespace Schedule_Project.Pages.ModelsGay
         }
 
         [BindProperty]
-      public Subject Subject { get; set; } = default!;
+      public Schedule Schedule { get; set; } = default!;
 
-        public async Task<IActionResult> OnGetAsync(string id)
+        public async Task<IActionResult> OnGetAsync(int? id)
         {
-            if (id == null || _context.Subjects == null)
+            if (id == null || _context.Schedules == null)
             {
                 return NotFound();
             }
 
-            var subject = await _context.Subjects.FirstOrDefaultAsync(m => m.SubjectId == id);
+            var schedule = await _context.Schedules.FirstOrDefaultAsync(m => m.Id == id);
 
-            if (subject == null)
+            if (schedule == null)
             {
                 return NotFound();
             }
             else 
             {
-                Subject = subject;
+                Schedule = schedule;
             }
             return Page();
         }
 
-        public async Task<IActionResult> OnPostAsync(string id)
+        public async Task<IActionResult> OnPostAsync(int? id)
         {
-            if (id == null || _context.Subjects == null)
+            if (id == null || _context.Schedules == null)
             {
                 return NotFound();
             }
-            var subject = await _context.Subjects.FindAsync(id);
+            var schedule = await _context.Schedules.FindAsync(id);
 
-            if (subject != null)
+            if (schedule != null)
             {
-                Subject = subject;
-                _context.Subjects.Remove(Subject);
+                Schedule = schedule;
+                _context.Schedules.Remove(Schedule);
                 await _context.SaveChangesAsync();
             }
 

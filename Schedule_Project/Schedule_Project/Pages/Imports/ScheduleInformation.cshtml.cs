@@ -21,12 +21,16 @@ namespace Schedule_Project.Pages.Imports
         private TeacherServices teacherServices;
         private SubjectServices subjectServices;
         private UniversityClassesServices universityClassesServices;
+        private CommonService commonService;
         private bool isValid;
 
         public HandleFileUpload HandleFileUploadModel { get; set; }
         public List<ScheduleDTO> SchedulesDTO { get; set; }
 
-        public ScheduleInformationModel(IWebHostEnvironment environment, ScheduleServices scheduleService, CourseSessionServices courseSessionServices, TeacherServices teacherServices, SubjectServices subjectServices, UniversityClassesServices universityClassesServices)
+        public ScheduleInformationModel(IWebHostEnvironment environment, ScheduleServices scheduleService, 
+            CourseSessionServices courseSessionServices, TeacherServices teacherServices, 
+            SubjectServices subjectServices, UniversityClassesServices universityClassesServices,
+            CommonService commonService)
         {
             _environment = environment;
             HandleFileUploadModel = new HandleFileUpload();
@@ -35,6 +39,7 @@ namespace Schedule_Project.Pages.Imports
             this.teacherServices = teacherServices;
             this.subjectServices = subjectServices;
             this.universityClassesServices = universityClassesServices;
+            this.commonService = commonService;
         }
 
         [BindProperty]
@@ -216,7 +221,8 @@ namespace Schedule_Project.Pages.Imports
             {
                 if (!courseInformation.HasSessionYet)
                 {
-                    ImportEachSession(courseInformation);
+                    // ImportEachSession(courseInformation);
+                    commonService.ImportEachSession(courseInformation);
                 }
                 
             }
@@ -228,7 +234,8 @@ namespace Schedule_Project.Pages.Imports
         private void ImportEachSession(Schedule schedule)
         {
             List<CourseSession> courseSessionsList = new List<CourseSession>();
-            for (int i=0; i<=19; i++)
+            int numberOfSessions = subjectServices.GetSessionsBySubjectId(schedule.SubjectId);
+            for (int i=0; i<= numberOfSessions; i++)
             {
                 DateTime d = schedule.StartDate;
                 int dayOfWeek = (int)d.DayOfWeek + 1;

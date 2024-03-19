@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace Schedule_Project.Models
 {
@@ -15,6 +16,8 @@ namespace Schedule_Project.Models
         public string SubjectId { get; set; } = null!;
         public string Room { get; set; } = null!;
         public string Teacher { get; set; } = null!;
+
+        [StringLength(3, ErrorMessage = "Tối đa đến 3 ký tự")]
         public string SlotId { get; set; } = null!;
         public DateTime DateCreated { get; set; }
         public string? Season { get; set; }
@@ -22,7 +25,10 @@ namespace Schedule_Project.Models
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
         public string TypeOfSlot { get; set; } = null!;
+
+        [Range(2, 7)]
         public int Slot1 { get; set; }
+        [Range(2, 7)]
         public int Slot2 { get; set; }
         public bool HasSessionYet { get; set; }
 
