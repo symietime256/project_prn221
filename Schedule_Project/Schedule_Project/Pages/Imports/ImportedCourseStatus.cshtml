@@ -1,0 +1,69 @@
+﻿@page
+@model Schedule_Project.Pages.Imports.ImportedCourseStatusModel
+@{
+}
+
+
+<style>
+    table {
+        width: 100%;
+    }
+
+    td {
+        text-align: center;
+        border: 2px solid;
+        border-color: white;
+    }
+
+
+    tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+
+    tr:hover {
+        background-color: coral;
+    }
+
+    th {
+        background-color: #04AA6D;
+        color: white;
+        border: 2px solid;
+        border-color: white;
+    }
+</style>
+
+
+<div>
+    <a href="../Courses/Index">View List Course</a>
+</div>
+
+<div>
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>ClassId</th>
+                <th>SubjectId</th>
+                <th>Room</th>
+                <th>Teacher</th>
+                <th>SlotId</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var a in Model.CourseInformationStatus.Keys)
+            {
+                var courseInfo = Model.CourseInformationStatus[a].Item1;
+                var status = Model.CourseInformationStatus[a].Item2;
+                <tr>
+                    <td>@a</td>
+                    <td>@courseInfo.ClassId</td>
+                    <td>@courseInfo.SubjectId</td>
+                    <td>@courseInfo.Room</td>
+                    <td>@courseInfo.Teacher</td>
+                    <td>@courseInfo.SlotId</td>
+                    <td>@status</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

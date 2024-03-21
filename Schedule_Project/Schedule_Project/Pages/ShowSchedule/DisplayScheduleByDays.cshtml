@@ -1,0 +1,124 @@
+﻿@page
+@model Schedule_Project.Pages.ShowSchedule.DisplayScheduleByDaysModel
+@using DTOs
+@{
+}
+
+@{
+    ViewData["Title"] = "Display Schedule By Day";
+}
+
+<h1>Schedules</h1>
+<style>
+    table {
+        width: 100%;
+    }
+
+    
+
+    table {
+        border: 3px solid;
+    }
+
+    td {
+        text-align: center;
+        border: 2px solid;
+        border-color: white;
+    }
+
+    tr {
+        border: 2px solid white;
+    }
+
+    tr:hover {
+        background-color: coral;
+    }
+
+    tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+
+    th {
+        background-color: #04AA6D;
+        color: white;
+        border: 2px solid;
+        border-color: white;
+    }
+</style>
+
+@* <button class="open-button" onclick="openForm()">Open Form</button>
+
+<div class="form-popup" id="myForm">
+    <form action="/action_page.php" class="form-container">
+        <h1>Login</h1>
+
+        <label for="email"><b>Email</b></label>
+        <input type="text" placeholder="Enter Email" name="email" required>
+
+        <label for="psw"><b>Password</b></label>
+        <input type="password" placeholder="Enter Password" name="psw" required>
+
+        <button type="submit" class="btn">Login</button>
+        <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+    </form>
+</div> *@
+
+<button id="createBut">
+    <a asp-page="../Courses/Index">Add Schedule</a>
+</button>
+
+<table class="table">
+    <tr>
+        <form method="get" asp-page-handler="date">
+            <th colspan="7" id="dateth">
+            DATE: <input type="date" name="SelectedDate" value="@Model.SelectedDate.ToString("yyyy-MM-dd")" />
+                <input type="submit" value="View"/>
+            </th>
+        </form>
+    </tr>
+    <tr>
+        <td>Room</td>
+        <td>Slot 1 <br /> (7:30 - 9:50)</td>
+        <td>Slot 2 <br /> (10:00 - 12:20)</td>
+        <td>Slot 3<br /> (12:50 - 15:10)</td>
+        <td>Slot 4<br /> (15:20 - 17:40)</td>
+        <td>Slot 5<br /> (18:00 - 20:20)</td>
+        <td>Slot 6<br /> (20:20 - 22:40)</td>
+    </tr>
+    @{
+        var dictionary = Model.ScheduleCells.scheduleCells;
+    }
+    @foreach (var room in Model.RoomLists)
+    {
+        <tr>
+            <td>@room</td>
+            @for (int slot = 1; slot <= 6; slot++)
+            {
+                var key = Tuple.Create(room, slot);
+                RoomSlotInformationDTO value = new RoomSlotInformationDTO();
+                if (dictionary.TryGetValue(key, out value))
+                {
+                    <td>
+                        @value.ClassID<br />
+                        @value.SubjectId<br />
+                        @value.Teacher
+                    </td>
+                }
+                else
+                {
+                    <td></td>
+                }
+            }
+        </tr>
+    }
+</table>
+
+<script>
+    function openForm() {
+        document.getElementById("myForm").style.display = "block";
+    }
+
+    function closeForm() {
+        document.getElementById("myForm").style.display = "none";
+    }
+</script>

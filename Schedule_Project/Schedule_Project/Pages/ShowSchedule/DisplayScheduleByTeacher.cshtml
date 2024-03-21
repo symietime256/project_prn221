@@ -1,0 +1,100 @@
+﻿@page
+@using Models
+@using DTOs
+@model Schedule_Project.Pages.ShowSchedule.DisplayScheduleByTeacherModel
+@{
+}
+
+@{
+    ViewData["Title"] = "Display Schedule By Teacher";
+}
+
+
+<style>
+    table {
+        width: 100%;
+        
+    }
+
+    td {
+        text-align: center;
+        border: 2px solid;
+        border-color: white;
+    }
+
+
+    tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+    tr:hover {
+        background-color: coral;
+    }
+
+    th {
+        background-color: #04AA6D;
+        color: white;
+        border: 2px solid;
+        border-color: white;
+    }
+</style>
+
+<h1></h1>
+
+<div>
+    <form method="post" asp-page="./DisplayScheduleByTeacher">
+        <select asp-for="CurrentTeacher">
+            @foreach (var teacherId in Model.TeacherLists)
+            {
+                <option value="@teacherId">@teacherId</option>
+            }
+        </select>
+        <select asp-for="Period">
+            @foreach (var date in Model.DateDictionary.Keys)
+            {
+                <option value="@date">@date</option>
+            }
+        </select>
+        <input type="submit" value="View Schedule"/>
+    </form>
+</div>
+
+<div>
+    <table>
+        <thead>
+            <tr>
+                <th>Slot</th>
+                @foreach(var d in Model.ListOfDayOfWeek)
+                {
+                    <th>@d</th>
+                }
+            </tr>
+        </thead>
+        <tbody>
+            @for (int slot = 1; slot <= 6; slot++)
+            {
+                <tr>
+                    <td>Slot @slot</td>
+                    @for (int dayOfWeek = 2; dayOfWeek <= 8; dayOfWeek++)
+                    {
+                        var cell = Tuple.Create(dayOfWeek, slot);
+                        TeacherSlotInformationDTO teacherSlotInformationDTO = new();
+                        if (Model.ScheduleCells.ContainsKey(cell))
+                        {
+                            Model.ScheduleCells.TryGetValue(cell, out teacherSlotInformationDTO);
+                            <td>
+                                @teacherSlotInformationDTO.ClassId<br/>
+                                @teacherSlotInformationDTO.SubjectId<br/>
+                                @teacherSlotInformationDTO.Room
+                            </td>
+
+                        } else
+                        {
+                            <td></td>
+                        }
+                    }
+                </tr>
+
+            }
+        </tbody>
+    </table>
+</div>
