@@ -63,6 +63,15 @@ namespace Schedule_Project.Service
             universityClassesServices.GetClassIdLists();
         }
 
+        public int GetDayOfWeek(DateTime dateTime)
+        {
+            if (dateTime.DayOfWeek == DayOfWeek.Sunday)
+            {
+                return (int)dateTime.DayOfWeek + 8;
+            }
+            return (int)dateTime.DayOfWeek + 1;
+        }
+
         public bool ValidateCourse(ScheduleDTO scheduleDTO)
         {
             bool isValidCourse = false;

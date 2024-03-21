@@ -10,46 +10,39 @@
 
 <h1>Schedules</h1>
 <style>
-
-    .table td {
-        border: white solid 2px;
+    table {
+        width: 100%;
     }
 
-    .table td {
+    
+
+    table {
+        border: 3px solid;
+    }
+
+    td {
         text-align: center;
-        vertical-align: middle;
+        border: 2px solid;
+        border-color: white;
     }
 
-    .table tr:nth-child(2n) {
-        background-color: aliceblue;
+    tr {
+        border: 2px solid white;
     }
 
-    .table .header {
-        background-color: cornflowerblue;
+    tr:hover {
+        background-color: coral;
     }
 
-    #header {
-        background-color: cornflowerblue;
-        font-weight: bold;
+    tr:nth-child(even) {
+        background-color: #f2f2f2;
     }
 
-    #dateth{
-        text-align: center;
-    }
-    #createBut{
-        border: black solid 2px;
-        background-color: red;
-        border-radius: 10px;
-        margin: 10px;
-        
-    }
-    #createBut a{
+    th {
+        background-color: #04AA6D;
         color: white;
-        font-size: 20px;
-        text-decoration: none;
-    }
-    #createBut:hover{
-        background-color: red;
+        border: 2px solid;
+        border-color: white;
     }
 </style>
 
@@ -75,15 +68,15 @@
 </button>
 
 <table class="table">
-    <tr id="header">
+    <tr>
         <form method="get" asp-page-handler="date">
             <th colspan="7" id="dateth">
             DATE: <input type="date" name="SelectedDate" value="@Model.SelectedDate.ToString("yyyy-MM-dd")" />
-                <input type="submit" value="View" style="padding-left: 10px; border-radius: 5px;" />
+                <input type="submit" value="View"/>
             </th>
         </form>
     </tr>
-    <tr class="header" id="header">
+    <tr>
         <td>Room</td>
         <td>Slot 1 <br /> (7:30 - 9:50)</td>
         <td>Slot 2 <br /> (10:00 - 12:20)</td>

@@ -1,0 +1,7 @@
+get thứ (1)
+get slot học 
+get tên giáo viên (cặp key)
+
+
+=> value (môn, phòng, tên lớp)
+ 

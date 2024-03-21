@@ -18,7 +18,7 @@ namespace Schedule_Project.Pages.Courses
         private UniversityClassesServices universityClassesService;
 
         [BindProperty]
-        public string DescriptionForClass { get; set; }
+        public string DescriptionForClass { get; set; } = "";
 
         [BindProperty]
         public string ErrorMessage { get; set; } = "";

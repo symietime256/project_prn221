@@ -1,4 +1,5 @@
-﻿using Schedule_Project.DTOs;
+﻿using Microsoft.EntityFrameworkCore;
+using Schedule_Project.DTOs;
 using Schedule_Project.Models;
 using Schedule_Project.SharingContent;
 
@@ -11,9 +12,25 @@ namespace Schedule_Project.Service
             _context = context;
         }
 
+
+
+
+        public List<CourseSession> GetSessionsByTeacher(string teacherName) {
+            return _context.CourseSessions.Include(c => c.Course).Where(x => x.Teacher == teacherName).ToList();
+        }
         public List<CourseSession> GetSessions()
         {
             return _context.CourseSessions.ToList();
+        }
+
+        public void DeleteCourseSessionById(int id)
+        {
+            int i = _context.CourseSessions.ToList().RemoveAll(x => x.Id == id);
+            if (i > 0)
+            {
+                SaveChanges();
+            } 
+            
         }
 
         public void AddSessionsForCourse(CourseSession[] sessions) {

@@ -9,6 +9,7 @@ using Schedule_Project.Service;
 using Schedule_Project.SharingContent;
 using System;
 using System.Globalization;
+using System.Text.Json;
 using static Schedule_Project.SharingContent.EnumSource;
 
 namespace Schedule_Project.Pages.Imports
@@ -24,11 +25,14 @@ namespace Schedule_Project.Pages.Imports
         private CommonService commonService;
         private bool isValid;
 
+
+        public Dictionary<int, Tuple<ScheduleDTO, bool>> CourseInformationStatus { get; set; }
+
         public HandleFileUpload HandleFileUploadModel { get; set; }
         public List<ScheduleDTO> SchedulesDTO { get; set; }
 
-        public ScheduleInformationModel(IWebHostEnvironment environment, ScheduleServices scheduleService, 
-            CourseSessionServices courseSessionServices, TeacherServices teacherServices, 
+        public ScheduleInformationModel(IWebHostEnvironment environment, ScheduleServices scheduleService,
+            CourseSessionServices courseSessionServices, TeacherServices teacherServices,
             SubjectServices subjectServices, UniversityClassesServices universityClassesServices,
             CommonService commonService)
         {
@@ -40,11 +44,12 @@ namespace Schedule_Project.Pages.Imports
             this.subjectServices = subjectServices;
             this.universityClassesServices = universityClassesServices;
             this.commonService = commonService;
+            CourseInformationStatus = new Dictionary<int, Tuple<ScheduleDTO, bool>>();
         }
 
         [BindProperty]
         public IFormFile FileUpload { get; set; }
-        
+
 
         [TempData]
         public string Message { get; set; }
@@ -66,7 +71,7 @@ namespace Schedule_Project.Pages.Imports
             }
 
             FileType fileType;
-            using (var stream = new MemoryStream())                                                                                                                                                                    
+            using (var stream = new MemoryStream())
             {
                 await FileUpload.CopyToAsync(stream);
                 fileType = GetFileType(stream.ToArray());
@@ -104,24 +109,28 @@ namespace Schedule_Project.Pages.Imports
             ImportToCourseSession();
 
             // Message = "File uploaded successfully!";
-            return RedirectToPage("/Index");
+            string courseInfoStatusSerialize = JsonSerializer.Serialize(CourseInformationStatus);
+            TempData["CourseResults"] = courseInfoStatusSerialize;
+            return RedirectToPage("./ImportedCourseStatus");
         }
 
         private void ValidateAndImportFile(List<ScheduleDTO> scheduleDTOs)
         {
             GetAllData();
-            isValid = true;
+            int i = 1;
             foreach (ScheduleDTO scheduleDTO in scheduleDTOs)
             {
+                isValid = true;
                 if (!teacherServices.TeacherIdList.Contains(scheduleDTO.Teacher)
-                    || !subjectServices.SubjectIdList.Contains(scheduleDTO.SubjectId)) {
+                    || !subjectServices.SubjectIdList.Contains(scheduleDTO.SubjectId))
+                {
                     isValid = false;
                 }
                 if (!ValidateCourse(scheduleDTO))
                 {
                     isValid = false;
                 }
-                if (!universityClassesServices.classLists.Contains(scheduleDTO.ClassId))
+                if (isValid && !universityClassesServices.classLists.Contains(scheduleDTO.ClassId))
                 {
                     char[] chars = scheduleDTO.ClassId.ToCharArray();
                     UniversityClass uc = new UniversityClass();
@@ -147,31 +156,39 @@ namespace Schedule_Project.Pages.Imports
                     SlotInformationDTO slotInformationDTO = ScheduleService.GetSlotInformation(scheduleDTO);
                     ScheduleService.CreateSchedule(scheduleDTO, slotInformationDTO);
                 }
+                var courseStatus = Tuple.Create(scheduleDTO, isValid);
+                CourseInformationStatus.Add(i, courseStatus);
+                i++;
             }
         }
 
         private bool ValidateCourse(ScheduleDTO scheduleDTO)
         {
+
             bool isValidCourse = false;
             char[] slotInformations = scheduleDTO.SlotId.ToCharArray();
             char typeSlotAbbeviation = slotInformations[0];
             string typeOfSlot = ScheduleService.GetTypeOfSlot(typeSlotAbbeviation);
             int slot1 = slotInformations[1] - '0';
-            int slot2 = (int)slotInformations[2] - '0';
-            
-            foreach(var course in ScheduleService.SchedulesListInService)
+            int slot2 = slotInformations[2] - '0';
+
+
+
+            foreach (var course in ScheduleService.SchedulesListInService)
             {
-                if (course.ClassId == scheduleDTO.ClassId && course.SubjectId == scheduleDTO.SubjectId) {
+                if (course.ClassId == scheduleDTO.ClassId && course.SubjectId == scheduleDTO.SubjectId)
+                {
                     isValidCourse = false;
                     break;
                 }
-                if (course.Room == scheduleDTO.Room && course.TypeOfSlot == typeOfSlot && 
-                    (course.Slot1 == slot1 || course.Slot2 == slot2)) {
+                if (course.Room == scheduleDTO.Room && course.TypeOfSlot == typeOfSlot &&
+                    (course.Slot1 == slot1 || course.Slot2 == slot2))
+                {
                     isValidCourse = false;
                     break;
                 }
 
-                if (course.Teacher == scheduleDTO.Teacher && course.TypeOfSlot == typeOfSlot 
+                if (course.Teacher == scheduleDTO.Teacher && course.TypeOfSlot == typeOfSlot
                     && (course.Slot1 == slot1 || course.Slot2 == slot2))
                 {
                     isValidCourse = false;
@@ -224,18 +241,18 @@ namespace Schedule_Project.Pages.Imports
                     // ImportEachSession(courseInformation);
                     commonService.ImportEachSession(courseInformation);
                 }
-                
-            }
-        } 
 
-       
-        
+            }
+        }
+
+
+
 
         private void ImportEachSession(Schedule schedule)
         {
             List<CourseSession> courseSessionsList = new List<CourseSession>();
             int numberOfSessions = subjectServices.GetSessionsBySubjectId(schedule.SubjectId);
-            for (int i=0; i<= numberOfSessions; i++)
+            for (int i = 0; i <= numberOfSessions; i++)
             {
                 DateTime d = schedule.StartDate;
                 int dayOfWeek = (int)d.DayOfWeek + 1;
@@ -243,12 +260,12 @@ namespace Schedule_Project.Pages.Imports
                 string typeOfSlot = schedule.TypeOfSlot;
                 int week = i / 2 + 1;
                 int slot;
-                if (i % 2  == 0)
+                if (i % 2 == 0)
                 {
                     dayOfSlot = schedule.Slot1;
                     slot = 1;
                 }
-               else
+                else
                 {
                     dayOfSlot = schedule.Slot2;
                     slot = 2;
@@ -260,10 +277,10 @@ namespace Schedule_Project.Pages.Imports
                 courseSessionsList.Add(cs);
 
             }
-                CourseSessionServices.AddSessionsForCourse(courseSessionsList.ToArray());
-                ScheduleService.UpdateFlagAfterImportSessions(schedule.Id);
-                // var schedule = ScheduleService.
-                CourseSessionServices.SaveChanges();
+            CourseSessionServices.AddSessionsForCourse(courseSessionsList.ToArray());
+            ScheduleService.UpdateFlagAfterImportSessions(schedule.Id);
+            // var schedule = ScheduleService.
+            CourseSessionServices.SaveChanges();
         }
 
         public string GetTypeOfSlot(char slot)
@@ -286,18 +303,19 @@ namespace Schedule_Project.Pages.Imports
             if (typeOfSlot.Equals(Constant.AFTERNOON))
             {
                 sessionSlot = slot + 2;
-            } else if (typeOfSlot.Equals(Constant.EVENING))
+            }
+            else if (typeOfSlot.Equals(Constant.EVENING))
             {
                 sessionSlot = slot + 4;
             }
             return sessionSlot;
         }
 
-        
+
 
         public void OnGet()
         {
-            
+
         }
     }
 }

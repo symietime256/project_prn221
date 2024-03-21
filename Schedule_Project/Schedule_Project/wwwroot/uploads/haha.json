@@ -7,12 +7,31 @@
       "Teacher": "KhuongPD",
       "SlotId": "A36"
     },
-    {
+    { 
       "ClassId": "SE1704",
-      "SubjectId": "PRN221",
+      "SubjectId": "CSD201",
       "Room": "BE-114",
       "Teacher": "KhuongPD",
+      "SlotId": "B26"
+    },
+	{
+      "ClassId": "SE1705",
+      "SubjectId": "EXE101",
+      "Room": "BE-113",
+      "Teacher": "BanTQ",
       "SlotId": "A36"
+    },{
+      "ClassId": "SE1701",
+      "SubjectId": "PRN221",
+      "Room": "BE-117",
+      "Teacher": "BanTQ",
+      "SlotId": "A36"
+    },{
+      "ClassId": "SE1707",
+      "SubjectId": "PRN221",
+      "Room": "BE-113",
+      "Teacher": "BanTQ",
+      "SlotId": "A24"
     }
   ]
 }

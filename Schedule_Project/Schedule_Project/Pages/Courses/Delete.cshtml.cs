@@ -6,15 +6,19 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using Schedule_Project.Models;
+using Schedule_Project.Service;
 
 namespace Schedule_Project.Pages.Courses
 {
     public class DeleteModel : PageModel
     {
-        private readonly Schedule_Project.Models.PRN221ProjectContext _context;
+        private readonly PRN221ProjectContext _context;
 
-        public DeleteModel(Schedule_Project.Models.PRN221ProjectContext context)
+        private readonly CourseSessionServices sessionServices;
+
+        public DeleteModel(PRN221ProjectContext context, CourseSessionServices css)
         {
+            sessionServices = css;
             _context = context;
         }
 
@@ -43,16 +47,20 @@ namespace Schedule_Project.Pages.Courses
 
         public async Task<IActionResult> OnPostAsync(int? id)
         {
+            int id1 = (int)id;
             if (id == null || _context.Schedules == null)
             {
                 return NotFound();
             }
-            var schedule = await _context.Schedules.FindAsync(id);
+            var schedule = await _context.Schedules.Include(b => b.CourseSessions).FirstOrDefaultAsync(p => p.Id == id1);
 
             if (schedule != null)
             {
+                
                 Schedule = schedule;
-                _context.Schedules.Remove(Schedule);
+                _context.Remove(Schedule);
+
+                
                 await _context.SaveChangesAsync();
             }
 

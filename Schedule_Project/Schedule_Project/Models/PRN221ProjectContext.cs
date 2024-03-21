@@ -47,7 +47,7 @@ namespace Schedule_Project.Models
                 entity.HasOne(d => d.Course)
                     .WithMany(p => p.CourseSessions)
                     .HasForeignKey(d => d.CourseId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .OnDelete(DeleteBehavior.ClientCascade)
                     .HasConstraintName("FK_CourseSession_Schedule");
             });
 
