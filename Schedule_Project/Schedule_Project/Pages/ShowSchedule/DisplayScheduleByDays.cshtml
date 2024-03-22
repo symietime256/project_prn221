@@ -99,6 +99,7 @@
                 if (dictionary.TryGetValue(key, out value))
                 {
                     <td>
+                        <a href="/CourseSessions/Edit?id=@value.Id">Edit Slot</a>
                         @value.ClassID<br />
                         @value.SubjectId<br />
                         @value.Teacher

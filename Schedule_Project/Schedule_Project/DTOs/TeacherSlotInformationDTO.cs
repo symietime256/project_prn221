@@ -5,12 +5,14 @@
 
         public TeacherSlotInformationDTO() { }
 
-        public TeacherSlotInformationDTO(string classId, string subjectId, string room) {
+        public TeacherSlotInformationDTO(int id, string classId, string subjectId, string room) {
+            this.Id = id;
             ClassId = classId;
             SubjectId = subjectId;
             Room = room;
         }
 
+        public int Id { get; set; }
         public string ClassId { get; set; }
 
         public string SubjectId { get; set; }

@@ -14,6 +14,23 @@ namespace Schedule_Project.Service
 
 
 
+        public bool ValidateCourseSession(CourseSession courseSession)
+        {
+            bool isValid = true;
+            var courseSessionList = _context.CourseSessions.Where(p => p.SessionDate.CompareTo(courseSession.SessionDate) == 0);
+            foreach(var session in courseSessionList)
+            {
+                isValid = true;
+                if (session.Slot == courseSession.Slot 
+                    && (courseSession.Room == session.Room || courseSession.Teacher == session.Teacher))
+                {
+                    isValid = false;
+                    break;
+                }
+            }
+            return isValid;
+        }
+
 
         public List<CourseSession> GetSessionsByTeacher(string teacherName) {
             return _context.CourseSessions.Include(c => c.Course).Where(x => x.Teacher == teacherName).ToList();
@@ -21,6 +38,13 @@ namespace Schedule_Project.Service
         public List<CourseSession> GetSessions()
         {
             return _context.CourseSessions.ToList();
+        }
+
+        public void DeleteOldCourseSession(int id)
+        {
+            var schedule = _context.Schedules.Include(p => p.CourseSessions).Single(x => x.Id == id);
+            schedule.CourseSessions.Clear();
+            SaveChanges();
         }
 
         public void DeleteCourseSessionById(int id)

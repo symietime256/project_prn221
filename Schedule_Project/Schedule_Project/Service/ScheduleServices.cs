@@ -18,6 +18,8 @@ namespace Schedule_Project.Service
 
         public Schedule ScheduleInCharge { get; set; }
 
+        
+
         public SlotInformationDTO GetSlotInformation(ScheduleDTO scheduleDTO)
         {
             char[] slotInformations = scheduleDTO.SlotId.ToCharArray();
@@ -49,6 +51,12 @@ namespace Schedule_Project.Service
             _context.Schedules.Add(scheduleToSave);
             _context.SaveChanges();
             ScheduleInCharge = scheduleToSave;
+        }
+
+        public Schedule GetScheduleThroughDTO(ScheduleDTO scheduleDTO, SlotInformationDTO slotInfo)
+        {
+            Schedule scheduleToSave = MapSchedule(scheduleDTO, slotInfo);
+            return scheduleToSave;
         }
 
         private Schedule MapSchedule(ScheduleDTO scheduleDTO, SlotInformationDTO slotInfo)

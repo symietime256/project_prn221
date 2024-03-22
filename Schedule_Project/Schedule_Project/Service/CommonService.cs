@@ -14,7 +14,10 @@ namespace Schedule_Project.Service
         private SubjectServices subjectServices;
         private UniversityClassesServices universityClassesServices;
 
-
+        public void DeleteAllOldSessions(Schedule schedule)
+        {
+            CourseSessionServices.DeleteOldCourseSession(schedule.Id);
+        }
 
         public List<ScheduleDTO> TempScheduleDTOs;
         public CommonService(PRN221ProjectContext context, ScheduleServices scheduleService,
@@ -50,6 +53,13 @@ namespace Schedule_Project.Service
             ImportEachSession(ScheduleService.ScheduleInCharge);
         }
 
+        public Schedule GetEditScheduleDTO(ScheduleDTO sdto)
+        {
+            SlotInformationDTO sifDto = ScheduleService.GetSlotInformation(sdto);
+            var schedule = ScheduleService.GetScheduleThroughDTO(sdto, sifDto);
+            return schedule;
+        }
+
         public void CleanTemporaryScheduleDTO()
         {
             TempScheduleDTOs.Clear();
@@ -72,7 +82,7 @@ namespace Schedule_Project.Service
             return (int)dateTime.DayOfWeek + 1;
         }
 
-        public bool ValidateCourse(ScheduleDTO scheduleDTO)
+        public bool ValidateCourse(ScheduleDTO scheduleDTO, int courseId = 0)
         {
             bool isValidCourse = false;
             char[] slotInformations = scheduleDTO.SlotId.ToCharArray();
@@ -83,6 +93,7 @@ namespace Schedule_Project.Service
 
             foreach (var course in ScheduleService.SchedulesListInService)
             {
+                if (course.Id == courseId) { continue; }
                 if (course.ClassId == scheduleDTO.ClassId && course.SubjectId == scheduleDTO.SubjectId)
                 {
                     isValidCourse = false;
