@@ -1,0 +1,83 @@
+﻿@page
+@model Schedule_Project.Pages.CourseSessions.EditModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>CourseSession</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="CourseSession.Course" value="@Model.CourseSession.Course" />
+            <input type="hidden" asp-for="CourseSession.Id" />
+            <div class="form-group">
+                <label asp-for="CourseSession.CourseId" class="control-label"></label>
+                @* <select asp-for="CourseSession.CourseId" class="form-control" asp-items="ViewBag.CourseId"></select> *@
+                <input asp-for="CourseSession.CourseId" class="form-control" disabled />
+                <input type="hidden" asp-for="CourseSession.CourseId" class="form-control" value="@Model.CourseSession.CourseId"/>
+                <span asp-validation-for="CourseSession.CourseId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CourseSession.SessionId" class="control-label"></label>
+                <input asp-for="CourseSession.SessionId" class=" form-control" disabled/>
+                <input type="hidden" asp-for="CourseSession.SessionId" class="form-control" value="@Model.CourseSession.SessionId" />
+                <span asp-validation-for="CourseSession.SessionId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CourseSession.SessionDate" class="control-label"></label>
+                <input asp-for="CourseSession.SessionDate" class="form-control" />
+                <span asp-validation-for="CourseSession.SessionDate" class="text-danger"></span>
+            </div>
+            @* <div class="form-group">
+                <label asp-for="CourseSession.Teacher" class="control-label"></label>
+                <input asp-for="CourseSession.Teacher" class="form-control" />
+                <span asp-validation-for="CourseSession.Teacher" class="text-danger"></span>
+            </div> *@
+            <div class="form-group">
+                <label asp-for="CourseSession.Teacher" class="control-label"></label>
+                @* <select asp-for="Schedule.ClassId" class="form-control" asp-items="ViewBag.ClassId" disabled></select> *@
+                <select asp-for="CourseSession.Teacher" class="form-control" asp-items="ViewBag.TeacherId"></select>
+                @* <input asp-for="Schedule.ClassId" class="form-control" value="@Model.Schedule.ClassId" disabled /> *@
+                <span asp-validation-for="CourseSession.Teacher" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CourseSession.Room" class="control-label"></label>
+                <input asp-for="CourseSession.Room" class="form-control" />
+                <span asp-validation-for="CourseSession.Room" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CourseSession.Slot" class="control-label"></label>
+                <select asp-for="CourseSession.Slot" class="form-control">
+                    @for (int i = 1; i <= 6; i++)
+                    {
+                        <option value="@i">@i</option>
+                    }
+                </select>
+                <span asp-validation-for="CourseSession.Slot" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+@if (Model.ErrorMessage != null && Model.ErrorMessage != "")
+{
+    <div>
+        <h3 style="color:red">@Model.ErrorMessage</h3>
+    </div>
+}
+
+<div>
+    <a asp-page="./Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

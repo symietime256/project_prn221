@@ -33,7 +33,7 @@ namespace Schedule_Project.Pages.ShowSchedule
             var roomSlotInformation = _context.CourseSessions.Include(courseSession => courseSession.Course).Where(d => d.SessionDate == SelectedDate).ToList();
             foreach (var roomSlot in roomSlotInformation)
             {
-                RoomSlotInformationDTO rsi = new(roomSlot.Course.ClassId, roomSlot.Course.SubjectId, roomSlot.Teacher);
+                RoomSlotInformationDTO rsi = new(roomSlot.Id, roomSlot.Course.ClassId, roomSlot.Course.SubjectId, roomSlot.Teacher);
                 Tuple<string, int> tuple = new Tuple<string, int>(roomSlot.Room, roomSlot.Slot);
                 ScheduleCells.scheduleCells.Add(tuple, rsi);
                 RoomLists.Add(roomSlot.Room);

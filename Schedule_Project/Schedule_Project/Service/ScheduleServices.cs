@@ -18,6 +18,8 @@ namespace Schedule_Project.Service
 
         public Schedule ScheduleInCharge { get; set; }
 
+        
+
         public SlotInformationDTO GetSlotInformation(ScheduleDTO scheduleDTO)
         {
             char[] slotInformations = scheduleDTO.SlotId.ToCharArray();

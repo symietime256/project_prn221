@@ -4,13 +4,15 @@
     {
         public RoomSlotInformationDTO() { }
 
-        public RoomSlotInformationDTO(string classID, string subjectId, string teacher)
+        public RoomSlotInformationDTO(int id, string classID, string subjectId, string teacher)
         {
+            Id = id;
             ClassID = classID;
             SubjectId = subjectId;
             Teacher = teacher;
         }
         
+        public int Id { get; set; }
 
         public string ClassID { get; set; }
 

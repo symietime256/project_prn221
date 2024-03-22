@@ -102,7 +102,7 @@ namespace Schedule_Project.Pages.ShowSchedule
         {
             foreach (var c in courseSessionsByTeacher)
             {
-                TeacherSlotInformationDTO tc = new TeacherSlotInformationDTO(c.Course.ClassId, c.Course.SubjectId, c.Room);
+                TeacherSlotInformationDTO tc = new TeacherSlotInformationDTO(c.Id ,c.Course.ClassId, c.Course.SubjectId, c.Room);
                 int dayOfWeek = CommonService.GetDayOfWeek(c.SessionDate);
                 int slot = c.Slot;
                 Tuple<int, int> dayAndSlotTuple = Tuple.Create(dayOfWeek, slot);

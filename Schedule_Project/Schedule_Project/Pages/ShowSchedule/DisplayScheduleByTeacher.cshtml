@@ -82,6 +82,7 @@
                         {
                             Model.ScheduleCells.TryGetValue(cell, out teacherSlotInformationDTO);
                             <td>
+                                <a href="../Pages/CourseSessions/Edit?id=@teacherSlotInformationDTO.Id">Edit Slot</a>
                                 @teacherSlotInformationDTO.ClassId<br/>
                                 @teacherSlotInformationDTO.SubjectId<br/>
                                 @teacherSlotInformationDTO.Room
