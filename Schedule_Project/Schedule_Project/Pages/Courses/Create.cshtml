@@ -95,12 +95,22 @@
             </div>
             <div class="form-group">
                 <label asp-for="Schedule.Slot1" class="control-label"></label>
-                <input asp-for="Schedule.Slot1" class="form-control" />
+                <select asp-for="Schedule.Slot1" class="form-control">
+                    @for (int i = 2; i <= 7; i++)
+                    {
+                        <option value="@i">@i</option>
+                    }
+                </select>
                 <span asp-validation-for="Schedule.Slot1" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Schedule.Slot2" class="control-label"></label>
-                <input asp-for="Schedule.Slot2" class="form-control" />
+                <select asp-for="Schedule.Slot2" class="form-control">
+                    @for (int i = 2; i <= 7; i++)
+                    {
+                        <option value="@i">@i</option>
+                    }
+                </select>
                 <span asp-validation-for="Schedule.Slot2" class="text-danger"></span>
             </div>
 @*             <div class="form-group form-check">

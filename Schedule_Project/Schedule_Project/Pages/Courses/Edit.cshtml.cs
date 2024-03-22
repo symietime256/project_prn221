@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Schedule_Project.Models;
+using Schedule_Project.Service;
 
 namespace Schedule_Project.Pages.Courses
 {
@@ -14,9 +15,15 @@ namespace Schedule_Project.Pages.Courses
     {
         private readonly Schedule_Project.Models.PRN221ProjectContext _context;
 
-        public EditModel(Schedule_Project.Models.PRN221ProjectContext context)
+        private CommonService commonService;
+
+        [BindProperty]
+        public string ErrorMessage { get; set; } = "";
+
+        public EditModel(Schedule_Project.Models.PRN221ProjectContext context, CommonService commonService)
         {
             _context = context;
+            this.commonService = commonService;
         }
 
         [BindProperty]
@@ -43,8 +50,25 @@ namespace Schedule_Project.Pages.Courses
 
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see https://aka.ms/RazorPagesCRUD.
+
+        public IActionResult HandleEditCourse()
+        {
+            var scheduleDTO = commonService.GetScheduleDTO(Schedule);
+            commonService.GetAllData();
+            if (commonService.ValidateCourse(scheduleDTO))
+            {
+                Schedule = commonService.GetEditScheduleDTO(scheduleDTO);
+                return Redirect("./Index");
+            }
+            else
+            {
+                ErrorMessage = "Failed because of conflicts";
+                return Page();
+            }
+        }
         public async Task<IActionResult> OnPostAsync()
         {
+            HandleEditCourse();
             if (!ModelState.IsValid)
             {
                 return Page();

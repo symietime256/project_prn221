@@ -51,6 +51,12 @@ namespace Schedule_Project.Service
             ScheduleInCharge = scheduleToSave;
         }
 
+        public Schedule GetScheduleThroughDTO(ScheduleDTO scheduleDTO, SlotInformationDTO slotInfo)
+        {
+            Schedule scheduleToSave = MapSchedule(scheduleDTO, slotInfo);
+            return scheduleToSave;
+        }
+
         private Schedule MapSchedule(ScheduleDTO scheduleDTO, SlotInformationDTO slotInfo)
         {
             Schedule schedule1 = new Schedule();

@@ -50,6 +50,13 @@ namespace Schedule_Project.Service
             ImportEachSession(ScheduleService.ScheduleInCharge);
         }
 
+        public Schedule GetEditScheduleDTO(ScheduleDTO sdto)
+        {
+            SlotInformationDTO sifDto = ScheduleService.GetSlotInformation(sdto);
+            var schedule = ScheduleService.GetScheduleThroughDTO(sdto, sifDto);
+            return schedule;
+        }
+
         public void CleanTemporaryScheduleDTO()
         {
             TempScheduleDTOs.Clear();
