@@ -2,6 +2,7 @@
 @model Schedule_Project.Pages.Imports.ImportedCourseStatusModel
 @{
     ViewData["Title"] = "ImportedCourseStatus";
+    
 }
 
 
@@ -50,6 +51,7 @@
                 <th>Room</th>
                 <th>Teacher</th>
                 <th>SlotId</th>
+                <th>Status</th>
             </tr>
         </thead>
         <tbody>
@@ -64,8 +66,17 @@
                     <td>@courseInfo.Room</td>
                     <td>@courseInfo.Teacher</td>
                     <td>@courseInfo.SlotId</td>
-                    <td>@status</td>
+                    @if (status)
+                    {
+                        <td><i class="fa-solid fa-check"></i></td>
+                    }
+                    else
+                    {
+                        <td><i class="fa-solid fa-xmark"></i></td>
+                    }
                     
+
+
                 </tr>
             }
         </tbody>

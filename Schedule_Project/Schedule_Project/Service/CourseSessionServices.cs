@@ -2,6 +2,7 @@
 using Schedule_Project.DTOs;
 using Schedule_Project.Models;
 using Schedule_Project.SharingContent;
+using System.Text.RegularExpressions;
 
 namespace Schedule_Project.Service
 {
@@ -16,11 +17,17 @@ namespace Schedule_Project.Service
 
         public bool ValidateCourseSession(CourseSession courseSession)
         {
+
             bool isValid = true;
             var courseSessionList = _context.CourseSessions.Where(p => p.SessionDate.CompareTo(courseSession.SessionDate) == 0);
             foreach(var session in courseSessionList)
             {
                 isValid = true;
+                if (!Regex.IsMatch(courseSession.Room, Validate.ROOM_NAME))
+                {
+                    isValid = false;
+                    break;
+                }
                 if (session.Slot == courseSession.Slot 
                     && (courseSession.Room == session.Room || courseSession.Teacher == session.Teacher))
                 {

@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/Schedule_Project.styles.css" asp-append-version="true" />
+    <script src="https://kit.fontawesome.com/9d46558ddb.js" crossorigin="anonymous"></script>
 </head>
 <body>
     <header>
@@ -23,7 +24,14 @@
                             <a class="nav-link text-dark" asp-area="" asp-page="/Index">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Privacy">Privacy</a>
+                            <a class="nav-link text-dark" asp-area="" asp-page="/Imports/ScheduleInformation">ImportCourse</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-page="/Courses/Index">Course Information</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-page="/ShowSchedule/DisplayScheduleByDays">Daily Schedule</a>
+                            <a class="nav-link text-dark" asp-area="" asp-page="/ShowSchedule/DisplayScheduleByTeacher">Teacher Schedule</a>
                         </li>
                     </ul>
                 </div>

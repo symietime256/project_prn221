@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "PPY+ZUzDKXF5WRMtH8CGlzGOHa38ok/nnjMEOSmVVuw=",
+  "Hash": "/VHNOPBGyNuhsEuWcpKW64wpwnFac9sNTKxu4mQ+dDI=",
   "Source": "Schedule_Project",
   "BasePath": "_content/Schedule_Project",
   "Mode": "Default",
@@ -1231,6 +1231,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\uploads\\fasdf.png"
+    },
+    {
+      "Identity": "D:\\SUBJECT-AND-STUDY\\CODE\\semester-7-fu\\PRN221\\Project\\project_prn221\\Schedule_Project\\Schedule_Project\\wwwroot\\uploads\\gay.csv",
+      "SourceId": "Schedule_Project",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\SUBJECT-AND-STUDY\\CODE\\semester-7-fu\\PRN221\\Project\\project_prn221\\Schedule_Project\\Schedule_Project\\wwwroot\\",
+      "BasePath": "_content/Schedule_Project",
+      "RelativePath": "uploads/gay.csv",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\gay.csv"
     },
     {
       "Identity": "D:\\SUBJECT-AND-STUDY\\CODE\\semester-7-fu\\PRN221\\Project\\project_prn221\\Schedule_Project\\Schedule_Project\\wwwroot\\uploads\\haha.json",

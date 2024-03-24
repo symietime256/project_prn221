@@ -1,6 +1,7 @@
 ﻿using Schedule_Project.DTOs;
 using Schedule_Project.Models;
 using Schedule_Project.SharingContent;
+using System.Text.RegularExpressions;
 
 namespace Schedule_Project.Service
 {
@@ -14,6 +15,17 @@ namespace Schedule_Project.Service
         private SubjectServices subjectServices;
         private UniversityClassesServices universityClassesServices;
 
+
+        public bool checkDuplicateSlot(int slot1, int slot2)
+        {
+            if (slot1 == slot2)
+            {
+                return true;
+            }else
+            {
+                return false;
+            }
+        }
         public void DeleteAllOldSessions(Schedule schedule)
         {
             CourseSessionServices.DeleteOldCourseSession(schedule.Id);
@@ -84,16 +96,31 @@ namespace Schedule_Project.Service
 
         public bool ValidateCourse(ScheduleDTO scheduleDTO, int courseId = 0)
         {
+
+
+
             bool isValidCourse = false;
             char[] slotInformations = scheduleDTO.SlotId.ToCharArray();
             char typeSlotAbbeviation = slotInformations[0];
             string typeOfSlot = ScheduleService.GetTypeOfSlot(typeSlotAbbeviation);
             int slot1 = slotInformations[1] - '0';
             int slot2 = (int)slotInformations[2] - '0';
+            
+            if (checkDuplicateSlot(slot1, slot2)){
+                return false;
+            }
 
             foreach (var course in ScheduleService.SchedulesListInService)
             {
                 if (course.Id == courseId) { continue; }
+
+                if (!Regex.IsMatch(scheduleDTO.ClassId, Validate.CLASS_NAME)
+                    || !Regex.IsMatch(scheduleDTO.Room, Validate.ROOM_NAME))
+                {
+                    isValidCourse = false;
+                    break;
+                }
+
                 if (course.ClassId == scheduleDTO.ClassId && course.SubjectId == scheduleDTO.SubjectId)
                 {
                     isValidCourse = false;

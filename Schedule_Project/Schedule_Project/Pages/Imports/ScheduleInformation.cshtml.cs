@@ -10,6 +10,7 @@ using Schedule_Project.SharingContent;
 using System;
 using System.Globalization;
 using System.Text.Json;
+using System.Text.RegularExpressions;
 using static Schedule_Project.SharingContent.EnumSource;
 
 namespace Schedule_Project.Pages.Imports
@@ -75,6 +76,7 @@ namespace Schedule_Project.Pages.Imports
             {
                 await FileUpload.CopyToAsync(stream);
                 fileType = GetFileType(stream.ToArray());
+                
                 switch (fileType)
                 {
                     case FileType.JSON:
@@ -102,6 +104,10 @@ namespace Schedule_Project.Pages.Imports
                 await FileUpload.CopyToAsync(stream);
             }
 
+            string csvLast = new string(filePath.TakeLast(4).ToArray());
+
+            if (csvLast == ".csv") fileType = FileType.CSV;
+
             SchedulesDTO = HandleFileUploadModel.DeserializeListOfScheduleInformation(filePath, fileType);
 
             ValidateAndImportFile(SchedulesDTO);
@@ -120,7 +126,13 @@ namespace Schedule_Project.Pages.Imports
             int i = 1;
             foreach (ScheduleDTO scheduleDTO in scheduleDTOs)
             {
+
                 isValid = true;
+                if (!Regex.IsMatch(scheduleDTO.ClassId, Validate.CLASS_NAME) 
+                    || !Regex.IsMatch(scheduleDTO.Room, Validate.ROOM_NAME)) {
+                    isValid = false;
+                }
+
                 if (!teacherServices.TeacherIdList.Contains(scheduleDTO.Teacher)
                     || !subjectServices.SubjectIdList.Contains(scheduleDTO.SubjectId))
                 {
@@ -172,7 +184,10 @@ namespace Schedule_Project.Pages.Imports
             int slot1 = slotInformations[1] - '0';
             int slot2 = slotInformations[2] - '0';
 
-
+            if (commonService.checkDuplicateSlot(slot1, slot2))
+            {
+                return false;
+            }
 
             foreach (var course in ScheduleService.SchedulesListInService)
             {

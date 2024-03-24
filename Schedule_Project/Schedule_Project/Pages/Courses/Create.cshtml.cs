@@ -1,12 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Schedule_Project.Models;
 using Schedule_Project.Service;
+using Schedule_Project.SharingContent;
 
 namespace Schedule_Project.Pages.Courses
 {
@@ -63,7 +65,8 @@ namespace Schedule_Project.Pages.Courses
         {
             SetViewData();
             var classLists = commonService.GetClassIdListFromCommonService();
-            if (!classLists.Contains(Schedule.ClassId))
+            bool legitNewClass = true;
+            if (!classLists.Contains(Schedule.ClassId) && Regex.IsMatch(Schedule.ClassId, Validate.CLASS_NAME))
             {
                 UniversityClass uc = new()
                 {
@@ -72,17 +75,26 @@ namespace Schedule_Project.Pages.Courses
                 };
                 universityClassesService.AddClass(uc);
                 universityClassesService.SaveChanges();
+            }else
+            {
+                legitNewClass = false;
             }
-            HandleCreateCourse();
+            HandleCreateCourse(legitNewClass);
         }
 
-        public IActionResult HandleCreateCourse()
+        public IActionResult HandleCreateCourse(bool legitNewClass = true)
         {
             var scheduleDTO = commonService.GetScheduleDTO(Schedule);
             commonService.GetAllData();
+            if (!legitNewClass)
+            {
+                ErrorMessage = "Failed because of conflicts";
+                return Page();
+            }
             if (commonService.ValidateCourse(scheduleDTO))
             {
                 commonService.AddSchedule(scheduleDTO);
+                ErrorMessage = "Create course successfully";
                 return Redirect("./Index");
             }
             else
@@ -90,19 +102,20 @@ namespace Schedule_Project.Pages.Courses
                 ErrorMessage = "Failed because of conflicts";
                 return Page();
             }
+            
         }
         // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
-        public async Task<IActionResult> OnPostAsync()
-        {
-          if (!ModelState.IsValid || _context.Schedules == null || Schedule == null)
-            {
-                return Page();
-            }
+        //public async Task<IActionResult> OnPostAsync()
+        //{
+        //  if (!ModelState.IsValid || _context.Schedules == null || Schedule == null)
+        //    {
+        //        return Page();
+        //    }
 
-            _context.Schedules.Add(Schedule);
-            await _context.SaveChangesAsync();
+        //    _context.Schedules.Add(Schedule);
+        //    await _context.SaveChangesAsync();
 
-            return RedirectToPage("./Index");
-        }
+        //    return RedirectToPage("./Index");
+        //}
     }
 }
