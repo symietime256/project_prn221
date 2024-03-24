@@ -46,13 +46,14 @@ namespace Schedule_Project.Pages.ShowSchedule
             for (int i = 1; i <= 15; i++)
             {
                 DateTime beginWeek = startDate.AddDays(7 * (i - 1));
-                DateTime endWeek = startDate.AddDays(6 + 7 * (i - 1));
+                DateTime endWeek = startDate.AddDays(7 * i - 1).AddHours(23).AddMinutes(59).AddSeconds(59);
+                
                 var value = Tuple.Create(beginWeek, endWeek);
                 string begin = $"{beginWeek.Day}/{beginWeek.Month}";
                 string end = $"{endWeek.Day}/{endWeek.Month}";
                 string gay = $"{begin} To {end}";
-                if (onGet && DateTime.Compare(beginWeek, DateTime.Now) < 0 &&
-                        DateTime.Compare(DateTime.Now, endWeek) < 0)
+                if (onGet && DateTime.Compare(beginWeek, DateTime.Now) <= 0 &&
+                        DateTime.Compare(DateTime.Now, endWeek) <= 0)
                 {
                     Period = gay;
                 }
