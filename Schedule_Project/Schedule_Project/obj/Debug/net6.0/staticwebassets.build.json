@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "/VHNOPBGyNuhsEuWcpKW64wpwnFac9sNTKxu4mQ+dDI=",
+  "Hash": "5gdKwrBeYhqXVJY4mvCVTriXBBalspcYyXgZ0q94ruw=",
   "Source": "Schedule_Project",
   "BasePath": "_content/Schedule_Project",
   "Mode": "Default",
@@ -1212,6 +1212,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\uploads\\421179698_709858741328122_5925624411515794621_n.jpg"
+    },
+    {
+      "Identity": "D:\\SUBJECT-AND-STUDY\\CODE\\semester-7-fu\\PRN221\\Project\\project_prn221\\Schedule_Project\\Schedule_Project\\wwwroot\\uploads\\data.csv",
+      "SourceId": "Schedule_Project",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\SUBJECT-AND-STUDY\\CODE\\semester-7-fu\\PRN221\\Project\\project_prn221\\Schedule_Project\\Schedule_Project\\wwwroot\\",
+      "BasePath": "_content/Schedule_Project",
+      "RelativePath": "uploads/data.csv",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\data.csv"
     },
     {
       "Identity": "D:\\SUBJECT-AND-STUDY\\CODE\\semester-7-fu\\PRN221\\Project\\project_prn221\\Schedule_Project\\Schedule_Project\\wwwroot\\uploads\\fasdf.png",

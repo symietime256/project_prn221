@@ -96,7 +96,7 @@ namespace Schedule_Project.Service
 
         public bool ValidateCourse(ScheduleDTO scheduleDTO, int courseId = 0)
         {
-
+            GetAllData();
 
 
             bool isValidCourse = false;

@@ -123,6 +123,7 @@ namespace Schedule_Project.Pages.Imports
         private void ValidateAndImportFile(List<ScheduleDTO> scheduleDTOs)
         {
             GetAllData();
+            bool hasData = true;
             int i = 1;
             foreach (ScheduleDTO scheduleDTO in scheduleDTOs)
             {
@@ -138,7 +139,7 @@ namespace Schedule_Project.Pages.Imports
                 {
                     isValid = false;
                 }
-                if (!ValidateCourse(scheduleDTO))
+                if (!commonService.ValidateCourse(scheduleDTO))
                 {
                     isValid = false;
                 }
@@ -174,52 +175,7 @@ namespace Schedule_Project.Pages.Imports
             }
         }
 
-        private bool ValidateCourse(ScheduleDTO scheduleDTO)
-        {
-
-            bool isValidCourse = false;
-            char[] slotInformations = scheduleDTO.SlotId.ToCharArray();
-            char typeSlotAbbeviation = slotInformations[0];
-            string typeOfSlot = ScheduleService.GetTypeOfSlot(typeSlotAbbeviation);
-            int slot1 = slotInformations[1] - '0';
-            int slot2 = slotInformations[2] - '0';
-
-            if (commonService.checkDuplicateSlot(slot1, slot2))
-            {
-                return false;
-            }
-
-            foreach (var course in ScheduleService.SchedulesListInService)
-            {
-                if (course.ClassId == scheduleDTO.ClassId && course.SubjectId == scheduleDTO.SubjectId)
-                {
-                    isValidCourse = false;
-                    break;
-                }
-                if (course.Room == scheduleDTO.Room && course.TypeOfSlot == typeOfSlot &&
-                    (course.Slot1 == slot1 || course.Slot2 == slot2))
-                {
-                    isValidCourse = false;
-                    break;
-                }
-
-                if (course.Teacher == scheduleDTO.Teacher && course.TypeOfSlot == typeOfSlot
-                    && (course.Slot1 == slot1 || course.Slot2 == slot2))
-                {
-                    isValidCourse = false;
-                    break;
-                }
-                if (course.ClassId == scheduleDTO.ClassId && course.TypeOfSlot == typeOfSlot
-                    && (course.Slot1 == slot1 || course.Slot2 == slot2)
-                    && (course.Teacher != scheduleDTO.Teacher || course.Room != scheduleDTO.Room))
-                {
-                    isValidCourse = false;
-                    break;
-                }
-                isValidCourse = true;
-            }
-            return isValidCourse;
-        }
+       
 
         private FileType GetFileType(byte[] bytes)
         {
