@@ -106,9 +106,7 @@ namespace Schedule_Project.Service
             int slot1 = slotInformations[1] - '0';
             int slot2 = (int)slotInformations[2] - '0';
             
-            if (checkDuplicateSlot(slot1, slot2)){
-                return false;
-            }
+            
 
             foreach (var course in ScheduleService.SchedulesListInService)
             {
