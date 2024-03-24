@@ -157,6 +157,15 @@ namespace Schedule_Project.Pages.Imports
                         case "MC":
                             uc.Description = "Media Class";
                             break;
+                        case "IB":
+                            uc.Description = "International Business";
+                            break;
+                        case "IA":
+                            uc.Description = "Information Assurance";
+                            break;
+                        case "GD":
+                            uc.Description = "Graphic Design";
+                            break;
                         default:
                             uc.Description = "Other";
                             break;
