@@ -22,7 +22,12 @@ namespace Schedule_Project.Service
             var courseSessionList = _context.CourseSessions.Where(p => p.SessionDate.CompareTo(courseSession.SessionDate) == 0);
             foreach(var session in courseSessionList)
             {
+                
                 isValid = true;
+                if (session.Id == courseSession.Id)
+                {
+                    continue;
+                }
                 if (!Regex.IsMatch(courseSession.Room, Validate.ROOM_NAME))
                 {
                     isValid = false;
