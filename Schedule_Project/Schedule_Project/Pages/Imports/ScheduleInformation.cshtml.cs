@@ -232,7 +232,7 @@ namespace Schedule_Project.Pages.Imports
         {
             List<CourseSession> courseSessionsList = new List<CourseSession>();
             int numberOfSessions = subjectServices.GetSessionsBySubjectId(schedule.SubjectId);
-            for (int i = 0; i <= numberOfSessions; i++)
+            for (int i = 0; i < numberOfSessions; i++)
             {
                 DateTime d = schedule.StartDate;
                 int dayOfWeek = (int)d.DayOfWeek + 1;
