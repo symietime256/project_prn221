@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Schedule_Project")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+cc48792b373a1d99997ecfaf1f38fdd93412be75")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+4c6cf713f9bf91b1b3ebdc79314e8545d985a31e")]
 [assembly: System.Reflection.AssemblyProductAttribute("Schedule_Project")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Schedule_Project")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

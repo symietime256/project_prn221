@@ -103,10 +103,6 @@ namespace Schedule_Project.Pages.Imports
             {
                 await FileUpload.CopyToAsync(stream);
             }
-
-            string csvLast = new string(filePath.TakeLast(4).ToArray());
-
-
             SchedulesDTO = HandleFileUploadModel.DeserializeListOfScheduleInformation(filePath, fileType);
 
             ValidateAndImportFile(SchedulesDTO);

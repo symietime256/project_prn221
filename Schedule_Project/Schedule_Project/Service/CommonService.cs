@@ -99,14 +99,13 @@ namespace Schedule_Project.Service
             GetAllData();
 
 
-            bool isValidCourse = false;
+            bool isValidCourse = true;
             char[] slotInformations = scheduleDTO.SlotId.ToCharArray();
             char typeSlotAbbeviation = slotInformations[0];
             string typeOfSlot = ScheduleService.GetTypeOfSlot(typeSlotAbbeviation);
             int slot1 = slotInformations[1] - '0';
             int slot2 = (int)slotInformations[2] - '0';
-            
-            
+           
 
             foreach (var course in ScheduleService.SchedulesListInService)
             {
@@ -193,7 +192,7 @@ namespace Schedule_Project.Service
         {
             List<CourseSession> courseSessionsList = new List<CourseSession>();
             int numberOfSessions = subjectServices.GetSessionsBySubjectId(schedule.SubjectId);
-            for (int i = 0; i <= numberOfSessions; i++)
+            for (int i = 0; i < numberOfSessions; i++)
             {
                 DateTime d = schedule.StartDate;
                 int dayOfWeek = (int)d.DayOfWeek + 1;
