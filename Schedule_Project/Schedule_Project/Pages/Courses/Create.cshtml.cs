@@ -75,7 +75,7 @@ namespace Schedule_Project.Pages.Courses
                 };
                 universityClassesService.AddClass(uc);
                 universityClassesService.SaveChanges();
-            }else
+            }else if (!Regex.IsMatch(Schedule.ClassId, Validate.CLASS_NAME))
             {
                 legitNewClass = false;
             }

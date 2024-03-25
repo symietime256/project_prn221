@@ -106,7 +106,6 @@ namespace Schedule_Project.Pages.Imports
 
             string csvLast = new string(filePath.TakeLast(4).ToArray());
 
-            if (csvLast == ".csv") fileType = FileType.CSV;
 
             SchedulesDTO = HandleFileUploadModel.DeserializeListOfScheduleInformation(filePath, fileType);
 
@@ -184,7 +183,9 @@ namespace Schedule_Project.Pages.Imports
             }
         }
 
-       
+
+        bool IsLetter(byte b) => (b >= 0x41 && b <= 0x5A) || (b >= 0x61 && b <= 0x7A);       
+        
 
         private FileType GetFileType(byte[] bytes)
         {
@@ -204,6 +205,10 @@ namespace Schedule_Project.Pages.Imports
             if (bytes.Skip(i).Take(1).SequenceEqual(new byte[] { 0x7b }) || bytes.Skip(i).Take(1).SequenceEqual(new byte[] { 0x5b }))
             {
                 return FileType.JSON;
+            }
+            if (IsLetter(bytes[i]))
+            {
+                return FileType.CSV;
             }
             else
             {

@@ -8,13 +8,12 @@
     ViewData["Title"] = "Display Schedule By Day";
 }
 
-<h1>Daily Courses in @Model.SelectedDate</h1>
+<h1>Daily Courses in @Model.SelectedDate.ToString("yyyy-MM-dd")</h1>
 <style>
     table {
         width: 100%;
     }
 
-    
 
     table {
         border: 3px solid;
@@ -44,6 +43,10 @@
         border: 2px solid;
         border-color: white;
     }
+
+    button.haha {
+        background-color: greenyellow;
+    }
 </style>
 
 @* <button class="open-button" onclick="openForm()">Open Form</button>
@@ -63,11 +66,11 @@
     </form>
 </div> *@
 
-<button id="createBut">
+<button class="haha">
     <a asp-page="../Courses/Index">Add Schedule</a>
 </button>
 
-<table class="table">
+<table>
     <tr>
         <form method="get" asp-page-handler="date">
             <th colspan="7" id="dateth">
